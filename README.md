@@ -1,10 +1,7 @@
 # Explore C'ville
 Project for CS 4750: Database Systems
 
-Christine Baca
-Jessie Eoff
-Mara Hart
-Preston Wright
+Christine Baca, Jessie Eoff, Mara Hart, Preston Wright
 
 ## Web Views
 ### Home Page
