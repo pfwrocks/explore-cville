@@ -1,6 +1,6 @@
 <?php
 // hostname
-$hostname = 'localhost:3306';
+$hostname = 'localhost:3307';
 
 // database name
 $dbname = 'explore-cville';
