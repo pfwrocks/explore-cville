@@ -160,19 +160,23 @@
   /** get data **/
   function selectData()
   {
+    // echo "select data init";
     global $db;
 
-    $query = "SELECT * FROM courses";
+    $query = "SELECT * FROM EMPLOYEE";
 
     $statement = $db->prepare($query);
     $statement->execute();
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
+    echo 
 
     $statement->closeCursor();
 
-    foreach ($results as $result) { echo $result['course_ID'] . ":" . $result['course_desc'] . "<br/>"; }
+    foreach ($results as $result) { 
+      echo $result['EMPLOYEE_ID'] . ":" . $result['EMPLOYEE_LNAME'] . "<br/>"; 
+    }
   }
   ?>
 

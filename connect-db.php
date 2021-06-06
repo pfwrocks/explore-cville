@@ -13,7 +13,9 @@ $password = 'daEKR9EjDujaQqW7';
 // and the name of the database. If the MySQL database is running on the same server
 // as PHP, use the localhost keyword to specify the host computer
 
-$dsn = "mysql:host=$hostname;dbname=$dbname";
+// $dsn = "mysql:host=$hostname;dbname=$dbname";
+$dsn = "mysql:dbname=$dbname;host=127.0.0.1";
+
 
 /** connect to the database **/
 
