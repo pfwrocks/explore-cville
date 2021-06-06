@@ -3,9 +3,9 @@ Project for CS 4750: Database Systems
 
 Christine Baca, Jessie Eoff, Mara Hart, Preston Wright
 
-Make sure the following is in your SQL file before running.
+Make sure the following is in your SQL file before running. It needs to be in this order for dependencies.
 ```
-DROP TABLE `ACTIVITY`, `CUSTOMER`, `EMPLOYEE`, `ENROLL`, `HIKE`, `HOTEL`, `LIST`, `MOVIE`, `RENT`, `RENTALCAR`, `RESTAURANT`, `SHOWING`, `THEATER`;
+DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENT`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 ```
 
 ## Web Views
