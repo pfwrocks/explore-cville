@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2021 at 06:21 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Jun 06, 2021 at 06:39 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -312,6 +312,14 @@ CREATE TABLE `SHOWING` (
   `SHOW_TIME` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `SHOWING`
+--
+
+INSERT INTO `SHOWING` (`ACTIVITY_ID`, `THEATER_ID`, `SHOW_TIME`) VALUES
+(8, 1, '2021-06-30 13:00:00'),
+(9, 1, '2021-06-26 17:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -325,6 +333,13 @@ CREATE TABLE `THEATER` (
   `THEATER_STREET` varchar(50) NOT NULL,
   `THEATER_ZIP` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `THEATER`
+--
+
+INSERT INTO `THEATER` (`THEATER_ID`, `THEATER_NAME`, `THEATER_TICK_COST`, `THEATER_STREET`, `THEATER_ZIP`) VALUES
+(1, 'Regal Stonefield', '13', '1954 Swanson Dr.', '22901');
 
 --
 -- Indexes for dumped tables
@@ -452,7 +467,7 @@ ALTER TABLE `LIST`
 -- AUTO_INCREMENT for table `THEATER`
 --
 ALTER TABLE `THEATER`
-  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

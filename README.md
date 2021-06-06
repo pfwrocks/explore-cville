@@ -3,6 +3,11 @@ Project for CS 4750: Database Systems
 
 Christine Baca, Jessie Eoff, Mara Hart, Preston Wright
 
+Make sure the following is in your SQL file before running.
+```
+DROP TABLE `ACTIVITY`, `CUSTOMER`, `EMPLOYEE`, `ENROLL`, `HIKE`, `HOTEL`, `LIST`, `MOVIE`, `RENT`, `RENTALCAR`, `RESTAURANT`, `SHOWING`, `THEATER`;
+```
+
 ## Web Views
 ### Home Page
 An informational page, simply with a logo and a quick summary (perhaps Lorem Ipsum)
