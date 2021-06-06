@@ -22,6 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+DROP TABLE `ACTIVITY`, `CUSTOMER`, `EMPLOYEE`, `ENROLL`, `HIKE`, `HOTEL`, `LIST`, `MOVIE`, `RENT`, `RENTALCAR`, `RESTAURANT`, `SHOWING`, `THEATER`;
 
 --
 -- Table structure for table `ACTIVITY`
