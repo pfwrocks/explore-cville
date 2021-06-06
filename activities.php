@@ -56,161 +56,76 @@
       <div class="col-1" style="line-height:75px">
         <hr />
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
-        <input type="submit" name="btnaction" value="create" class="btn btn-light" />
-        <input type="submit" name="btnaction" value="insert" class="btn btn-light" />
-        <input type="submit" name="btnaction" value="select" class="btn btn-light" />
-        <input type="submit" name="btnaction" value="update" class="btn btn-light" />
-        <input type="submit" name="btnaction" value="delete" class="btn btn-light" />
-        <input type="submit" name="btnaction" value="drop" class="btn btn-light" />
-        <hr />
+        <input type="submit" name="btnaction" value="activity" class="btn btn-light" />
         </form>
+        <hr />
       </div>
-      <div class="col-8">
-        2 of 3 (wider)
-      </div>
-      <div class="col-3">
-        3 of 3
-      </div>
-    </div>
-    </center>
-  </div>
+      <div class="col-1" style="line-height:75px"> </div>
+      <div class="col-9">
+        2 of 3 (wider) <br /> <br /> <br /> 
 
   <?php require('connect-db.php'); ?>
 
   <?php
-  if (isset($_GET['btnaction']))
+  
+  try
   {
-    try
+    if (isset($_GET['btnaction']))
     {
-        switch ($_GET['btnaction'])
+      switch ($_GET['btnaction'])
         {
-          case 'create': createTable(); break;
-          case 'insert': insertData();  break;
-          case 'select': selectData();  break;
-          case 'update': updateData();  break;
-          case 'delete': deleteData();  break;
-          case 'drop':   dropTable();   break;
+          case 'activity': showActivity();  break;
         }
     }
-    catch (Exception $e)       // handle any type of exception
-    {
-        $error_message = $e->getMessage();
-        echo "<p>Error message: $error_message </p>";
-    }
+    else { showActivity(); }
   }
-  ?>
-
-  <?php
-  /*************************/
-  /** create table **/
-  function createTable()
+  catch (Exception $e)
   {
-  global $db;
-  $query = "CREATE TABLE courses (
-    course_ID VARCHAR(8) PRIMARY KEY,
-    course_desc VARCHAR(255) NOT NULL
-  )";
-
-  $statement = $db->prepare($query);
-  $statement->execute();
-
-  $statement->closeCursor();
-  }
-  ?>
-
-  <?php
-  /*************************/
-  /** drop table **/
-  function dropTable()
-  {
-    global $db;
-    $query = "DROP TABLE courses";
-
-    $statement = $db->prepare($query);
-    $statement->execute();
-
-    $statement->closeCursor();
-  }
-  ?>
-
-  <?php
-  /*************************/
-  /** insert data **/
-  function insertData()
-  {
-    global $db;
-
-    $course_id_form = 'cs1111';
-    $course_desc_form = 'Intro';
-
-    // $query = "INSERT INTO courses (course_ID, course_desc) VALUES ('cs4640', 'WEBPL')";
-    $query = "INSERT INTO courses (course_ID, course_desc) VALUES (:course_id, :course_desc)";
-
-    $statement = $db->prepare($query);
-    $statement->bindValue(':course_id', $course_id_form);
-    $statement->bindValue(':course_desc', $course_desc_form);
-    $statement->execute();
-
-    $statement->closeCursor();
+    $error_message = $e->getMessage();
+    echo "<p>Error message: $error_message </p>";
   }
   ?>
 
   <?php
   /*************************/
   /** get data **/
-  function selectData()
+  function showActivity()
   {
     // echo "select data init";
     global $db;
 
-    $query = "SELECT * FROM EMPLOYEE";
+    $query = "SELECT * FROM ACTIVITY";
 
     $statement = $db->prepare($query);
     $statement->execute();
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
-    echo 
 
     $statement->closeCursor();
-
-    foreach ($results as $result) { 
-      echo $result['EMPLOYEE_ID'] . ":" . $result['EMPLOYEE_LNAME'] . "<br/>"; 
+    
+    echo "<table style='width:100%''>
+          <tr>
+            <th>NAME</th>
+            <th>HOURS</th>
+            <th>TYPE</th>
+          </tr>";
+    
+    foreach ($results as $result)
+    {
+      echo "<tr>
+      <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
+      <td>" . $result['ACTIVITY_OPENTIME'] . "-" . $result['ACTIVITY_CLOSETIME'] . "</td>
+      <td>" . $result['ACTIVITY_TYPE'] . "</td>
+      </tr>";
     }
+    
+    echo "</table>";
   }
   ?>
-
-  <?php
-  /*************************/
-  /** update data **/
-  function updateData()
-  {
-    global $db;
-
-    // $query = "INSERT INTO courses (course_ID, course_desc) VALUES ('cs4640', 'WEBPL')";
-    $query = "UPDATE courses SET course_ID = 'cs2150', course_desc = 'prog & data repr' WHERE course_ID = 'cs1111'";
-
-    $statement = $db->prepare($query);
-    $statement->execute();
-
-    $statement->closeCursor();
-
-  }
-  ?>
-
-  <?php
-  /*************************/
-  /** delete data **/
-  function deleteData()
-  {
-    global $db;
-
-    $query = "DELETE FROM courses WHERE course_ID = 'cs2150'";
-
-    $statement = $db->prepare($query);
-    $statement->execute();
-
-    $statement->closeCursor();
-  }
-  ?>
+  
+        </div>
+    </div>
+    </center>
+  </div>
 </body>
