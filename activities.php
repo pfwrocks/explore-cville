@@ -54,15 +54,21 @@
     <center>
     <div class="row">
       <div class="col-1" style="line-height:75px">
-        <hr />
-        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
-        <input type="submit" name="btnaction" value="activity" class="btn btn-light" />
+        <br />
+        <h4> Views </h4>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" style="line-height:50px">
+          <div class="btn-group-vertical">
+          <input type="submit" name="btnaction" value="all" class="btn text-white bg-<?php if(!isset($_GET['btnaction'])||$_GET['btnaction']=='all'){echo "secondary";}else{echo "primary";} ?>" />
+          <input type="submit" name="btnaction" value="hike" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='hike'){echo "secondary";}else{echo "primary";} ?>" />
+          <input type="submit" name="btnaction" value="restaurant" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='restaurant'){echo "secondary";}else{echo "primary";} ?>" />
+          <input type="submit" name="btnaction" value="movie" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='movie'){echo "secondary";}else{echo "primary";} ?>" />
+          </div>
         </form>
-        <hr />
+        <br />
       </div>
       <div class="col-1" style="line-height:75px"> </div>
       <div class="col-9">
-        2 of 3 (wider) <br /> <br /> <br /> 
+        <br /> 
 
   <?php require('connect-db.php'); ?>
 
@@ -74,10 +80,13 @@
     {
       switch ($_GET['btnaction'])
         {
-          case 'activity': showActivity();  break;
+          case 'all': showActivity("ACTIVITY");  break;
+          case 'hike': showActivity("HIKE");  break;
+          case 'restaurant': showActivity("RESTAURANT");  break;
+          case 'movie': showActivity("MOVIE");  break;
         }
     }
-    else { showActivity(); }
+    else { showActivity("ACTIVITY"); }
   }
   catch (Exception $e)
   {
@@ -89,12 +98,12 @@
   <?php
   /*************************/
   /** get data **/
-  function showActivity()
+  function showActivity($act)
   {
     // echo "select data init";
     global $db;
 
-    $query = "SELECT * FROM ACTIVITY";
+    $query = "SELECT * FROM $act";
 
     $statement = $db->prepare($query);
     $statement->execute();
@@ -104,6 +113,7 @@
 
     $statement->closeCursor();
     
+    echo "<h2> All Activities </h2>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
@@ -123,6 +133,8 @@
     echo "</table>";
   }
   ?>
+  
+  
   
         </div>
     </div>
