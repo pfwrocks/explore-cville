@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 05, 2021 at 05:45 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Host: 127.0.0.1
+-- Generation Time: Jun 06, 2021 at 03:42 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ACTIVITY`
+-- Table structure for table `activity`
 --
 
-CREATE TABLE `ACTIVITY` (
+CREATE TABLE `activity` (
   `ACTIVITY_ID` int(11) NOT NULL,
   `ACTIVITY_NAME` text NOT NULL,
   `ACTIVITY_OPENTIME` date NOT NULL DEFAULT current_timestamp(),
@@ -37,10 +37,10 @@ CREATE TABLE `ACTIVITY` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ACTIVITY`
+-- Dumping data for table `activity`
 --
 
-INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_OPENTIME`, `ACTIVITY_CLOSETIME`, `ACTIVITY_TYPE`, `ACTIVITY_URL`) VALUES
+INSERT INTO `activity` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_OPENTIME`, `ACTIVITY_CLOSETIME`, `ACTIVITY_TYPE`, `ACTIVITY_URL`) VALUES
 (1, 'Old Rag Mountain Loop', '2021-01-01', '2022-01-31', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/old-rag-mountain-loop-trail'),
 (2, 'Humpback Rocks Hike', '2021-01-02', '2022-02-01', 'HIKE', 'https://www.hikingupward.com/maps/detail.asp?RID=218'),
 (3, 'Riprap Trail', '2021-01-03', '2022-02-02', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/riprap-trail'),
@@ -54,10 +54,10 @@ INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_OPENTIME`, `AC
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CUSTOMER`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE `CUSTOMER` (
+CREATE TABLE `customer` (
   `CUST_ID` int(11) NOT NULL,
   `CUST_FNAME` varchar(25) NOT NULL,
   `CUST_LNAME` varchar(25) NOT NULL,
@@ -65,15 +65,15 @@ CREATE TABLE `CUSTOMER` (
   `CUST_PHONE` int(7) NOT NULL,
   `CUSTOMER_ADDRESS` varchar(100) NOT NULL,
   `CUSTOMER_ZIP_CODE` int(11) NOT NULL,
-  `HOTEL_ID` int(11) NOT NULL,
-  `EMPLOYEE_ID` int(11) NOT NULL
+  `HOTEL_ID` int(11) DEFAULT NULL,
+  `EMPLOYEE_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `CUSTOMER`
+-- Dumping data for table `customer`
 --
 
-INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUSTOMER_ADDRESS`, `CUSTOMER_ZIP_CODE`, `HOTEL_ID`, `EMPLOYEE_ID`) VALUES
+INSERT INTO `customer` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUSTOMER_ADDRESS`, `CUSTOMER_ZIP_CODE`, `HOTEL_ID`, `EMPLOYEE_ID`) VALUES
 (1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 22105, 2, 1),
 (2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 12345, 3, 2),
 (3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 12345, 3, 2);
@@ -81,10 +81,10 @@ INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EMPLOYEE`
+-- Table structure for table `employee`
 --
 
-CREATE TABLE `EMPLOYEE` (
+CREATE TABLE `employee` (
   `EMPLOYEE_ID` int(11) NOT NULL,
   `EMPLOYEE_FNAME` varchar(50) NOT NULL,
   `EMPLOYEE_LNAME` varchar(50) NOT NULL,
@@ -95,10 +95,10 @@ CREATE TABLE `EMPLOYEE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `EMPLOYEE`
+-- Dumping data for table `employee`
 --
 
-INSERT INTO `EMPLOYEE` (`EMPLOYEE_ID`, `EMPLOYEE_FNAME`, `EMPLOYEE_LNAME`, `EMPLOYEE_AREACODE`, `EMPLOYEE_PHONE`, `EMPLOYEE_TITLE`, `EMPLOYEE_EMAIL`) VALUES
+INSERT INTO `employee` (`EMPLOYEE_ID`, `EMPLOYEE_FNAME`, `EMPLOYEE_LNAME`, `EMPLOYEE_AREACODE`, `EMPLOYEE_PHONE`, `EMPLOYEE_TITLE`, `EMPLOYEE_EMAIL`) VALUES
 (1, 'Tom', 'Hiddleston', 333, 4445555, 'Agent', 'thiddle@gmail.com'),
 (2, 'Tom', 'Holland', 222, 3334444, 'Agent', 'tomholland123@gmail.com'),
 (3, 'Jennifer', 'Lawrence', 111, 444555, 'Manager', 'therealjenniferlawrence@outlook.com');
@@ -106,19 +106,19 @@ INSERT INTO `EMPLOYEE` (`EMPLOYEE_ID`, `EMPLOYEE_FNAME`, `EMPLOYEE_LNAME`, `EMPL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ENROLL`
+-- Table structure for table `enroll`
 --
 
-CREATE TABLE `ENROLL` (
+CREATE TABLE `enroll` (
   `LIST_ID` int(11) NOT NULL,
   `ACTIVITY_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ENROLL`
+-- Dumping data for table `enroll`
 --
 
-INSERT INTO `ENROLL` (`LIST_ID`, `ACTIVITY_ID`) VALUES
+INSERT INTO `enroll` (`LIST_ID`, `ACTIVITY_ID`) VALUES
 (1, 6),
 (2, 9),
 (3, 2);
@@ -126,45 +126,64 @@ INSERT INTO `ENROLL` (`LIST_ID`, `ACTIVITY_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `HOTEL`
+-- Table structure for table `hike`
 --
 
-CREATE TABLE `HOTEL` (
+CREATE TABLE `hike` (
+  `ACTIVITY_ID` int(11) NOT NULL,
+  `HIKE_TNAME` varchar(50) NOT NULL,
+  `HIKE_DIFFICULTY` varchar(15) NOT NULL,
+  `HIKE_LENGTH` decimal(10,0) NOT NULL,
+  `HIKE_TOPO_GAIN` int(11) NOT NULL,
+  `HIKE_STREET` varchar(50) NOT NULL,
+  `HIKE_ZIPCODE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel`
+--
+
+CREATE TABLE `hotel` (
   `HOTEL_ID` int(11) NOT NULL,
   `HOTEL_NAME` varchar(100) NOT NULL,
   `HOTEL_NIGHTLYCOST` int(11) NOT NULL,
   `HOTEL_MAXCAPACITY` int(11) NOT NULL,
   `HOTEL_CURRCAPACITY` int(11) NOT NULL,
   `HOTEL_ADDR` varchar(50) NOT NULL,
-  `HOTEL_ZIP` varchar(10) NOT NULL
+  `HOTEL_ZIP` varchar(10) NOT NULL,
+  `HOTEL_CONTINENTAL` tinyint(1) NOT NULL,
+  `HOTEL_AREACODE` int(3) NOT NULL,
+  `HOTEL_PHONE` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `HOTEL`
+-- Dumping data for table `hotel`
 --
 
-INSERT INTO `HOTEL` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_NIGHTLYCOST`, `HOTEL_MAXCAPACITY`, `HOTEL_CURRCAPACITY`, `HOTEL_ADDR`, `HOTEL_ZIP`) VALUES
-(1, 'Red Roof Inn', 101, 50, 17, '2011 Holiday Drive', '22901'),
-(2, 'Graduate', 439, 30, 15, '1309 W Main St', '22903'),
-(3, 'Oakhurst Inn', 339, 12, 11, '100 Oakhurst Circle', '22903');
+INSERT INTO `hotel` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_NIGHTLYCOST`, `HOTEL_MAXCAPACITY`, `HOTEL_CURRCAPACITY`, `HOTEL_ADDR`, `HOTEL_ZIP`, `HOTEL_CONTINENTAL`, `HOTEL_AREACODE`, `HOTEL_PHONE`) VALUES
+(1, 'Red Roof Inn', 101, 50, 17, '2011 Holiday Drive', '22901', 0, 0, 0),
+(2, 'Graduate', 439, 30, 15, '1309 W Main St', '22903', 0, 0, 0),
+(3, 'Oakhurst Inn', 339, 12, 11, '100 Oakhurst Circle', '22903', 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LIST`
+-- Table structure for table `list`
 --
 
-CREATE TABLE `LIST` (
+CREATE TABLE `list` (
   `LIST_ID` int(11) NOT NULL,
-  `CUST_ID` int(11) NOT NULL,
+  `CUST_ID` int(11) DEFAULT NULL,
   `LIST_NAME` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `LIST`
+-- Dumping data for table `list`
 --
 
-INSERT INTO `LIST` (`LIST_ID`, `CUST_ID`, `LIST_NAME`) VALUES
+INSERT INTO `list` (`LIST_ID`, `CUST_ID`, `LIST_NAME`) VALUES
 (1, 1, 'Harry\'s magical adventure'),
 (2, 2, 'Vacation, June 2021'),
 (3, 3, 'Fall 2021 family trip');
@@ -172,10 +191,26 @@ INSERT INTO `LIST` (`LIST_ID`, `CUST_ID`, `LIST_NAME`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `RENT`
+-- Table structure for table `movie`
 --
 
-CREATE TABLE `RENT` (
+CREATE TABLE `movie` (
+  `ACTIVITY_ID` int(11) NOT NULL,
+  `MOVIE_NAME` varchar(50) NOT NULL,
+  `MOVIE_PARENT_RATING` varchar(7) NOT NULL,
+  `MOVIE_GENRE` varchar(15) NOT NULL,
+  `MOVIE_RATING` decimal(3,0) NOT NULL,
+  `MOVIE_DIRECTOR` varchar(25) NOT NULL,
+  `MOVIE_RELEASE_DATE` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rent`
+--
+
+CREATE TABLE `rent` (
   `CUSTOMER_ID` int(11) NOT NULL,
   `RC_VIN` int(11) NOT NULL,
   `RENT_STARTDATE` date DEFAULT NULL,
@@ -183,10 +218,10 @@ CREATE TABLE `RENT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `RENT`
+-- Dumping data for table `rent`
 --
 
-INSERT INTO `RENT` (`CUSTOMER_ID`, `RC_VIN`, `RENT_STARTDATE`, `RENT_ENDDATE`) VALUES
+INSERT INTO `rent` (`CUSTOMER_ID`, `RC_VIN`, `RENT_STARTDATE`, `RENT_ENDDATE`) VALUES
 (1, 3, NULL, NULL),
 (2, 2, NULL, NULL),
 (3, 1, NULL, NULL);
@@ -194,10 +229,10 @@ INSERT INTO `RENT` (`CUSTOMER_ID`, `RC_VIN`, `RENT_STARTDATE`, `RENT_ENDDATE`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `RENTALCAR`
+-- Table structure for table `rentalcar`
 --
 
-CREATE TABLE `RENTALCAR` (
+CREATE TABLE `rentalcar` (
   `RC_VIN` int(11) NOT NULL,
   `RC_MAKE` varchar(50) NOT NULL,
   `RC_MODEL` varchar(50) NOT NULL,
@@ -207,139 +242,244 @@ CREATE TABLE `RENTALCAR` (
   `RENTALCAR_SEATS` int(10) NOT NULL,
   `RENTALCAR_RENTAL_COMPANY` varchar(10) NOT NULL,
   `RENTALCAR_TRANSMISSION` varchar(50) NOT NULL,
-  `RENTALCAR_PICKUP_ADDR` varchar(50) NOT NULL
+  `RENTALCAR_PICKUP_ADDR` varchar(50) NOT NULL,
+  `RENTAL_PICKUP_ZIPCODE` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `RENTALCAR`
+-- Dumping data for table `rentalcar`
 --
 
-INSERT INTO `RENTALCAR` (`RC_VIN`, `RC_MAKE`, `RC_MODEL`, `RC_COSTPERDAY`, `RC_AVAILABLE`, `RC_COLOR`, `RENTALCAR_SEATS`, `RENTALCAR_RENTAL_COMPANY`, `RENTALCAR_TRANSMISSION`, `RENTALCAR_PICKUP_ADDR`) VALUES
-(1, 'GMC', 'Yukon', 261, 0, 'Black', 7, 'Hertz', 'Automatic', '1900 Rio Hill Center, Charlottesville, USA'),
-(2, 'Mitsubishi', 'Mirage', 64, 1, 'Grey', 4, 'Enterprise', 'Automatic', '1650 Seminole Trl, Charlottesville, USA'),
-(3, 'Chrysler ', '300', 124, 1, 'White', 5, 'Enterprise', 'Automatic', 'CHO Airport, Charlottesville, Virginia');
+INSERT INTO `rentalcar` (`RC_VIN`, `RC_MAKE`, `RC_MODEL`, `RC_COSTPERDAY`, `RC_AVAILABLE`, `RC_COLOR`, `RENTALCAR_SEATS`, `RENTALCAR_RENTAL_COMPANY`, `RENTALCAR_TRANSMISSION`, `RENTALCAR_PICKUP_ADDR`, `RENTAL_PICKUP_ZIPCODE`) VALUES
+(1, 'GMC', 'Yukon', 261, 0, 'Black', 7, 'Hertz', 'Automatic', '1900 Rio Hill Center, Charlottesville, USA', ''),
+(2, 'Mitsubishi', 'Mirage', 64, 1, 'Grey', 4, 'Enterprise', 'Automatic', '1650 Seminole Trl, Charlottesville, USA', ''),
+(3, 'Chrysler ', '300', 124, 1, 'White', 5, 'Enterprise', 'Automatic', 'CHO Airport, Charlottesville, Virginia', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurant`
+--
+
+CREATE TABLE `restaurant` (
+  `ACTIVITY_ID` int(11) NOT NULL,
+  `RESTAURANT_NAME` varchar(50) NOT NULL,
+  `RESTAURANT_RATING` decimal(10,0) NOT NULL,
+  `RESTAURANT_PRICE_RANGE` varchar(15) NOT NULL,
+  `RESTAURANT_CUISINE` varchar(15) NOT NULL,
+  `RESTAURANT_STREET` varchar(50) NOT NULL,
+  `RESTAURANT_ZIPCODE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `showing`
+--
+
+CREATE TABLE `showing` (
+  `ACTIVITY_ID` int(11) NOT NULL,
+  `THEATER_ID` int(11) NOT NULL,
+  `SHOW_TIME` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `theater`
+--
+
+CREATE TABLE `theater` (
+  `THEATER_ID` int(11) NOT NULL,
+  `THEATER_NAME` varchar(50) NOT NULL,
+  `THEATER_TICK_COST` decimal(10,0) NOT NULL,
+  `THEATER_STREET` varchar(50) NOT NULL,
+  `THEATER_ZIPCODE` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `ACTIVITY`
+-- Indexes for table `activity`
 --
-ALTER TABLE `ACTIVITY`
+ALTER TABLE `activity`
   ADD PRIMARY KEY (`ACTIVITY_ID`);
 
 --
--- Indexes for table `CUSTOMER`
+-- Indexes for table `customer`
 --
-ALTER TABLE `CUSTOMER`
+ALTER TABLE `customer`
   ADD PRIMARY KEY (`CUST_ID`),
   ADD KEY `CUST_FK1` (`HOTEL_ID`),
   ADD KEY `CUST_FK2` (`EMPLOYEE_ID`);
 
 --
--- Indexes for table `EMPLOYEE`
+-- Indexes for table `employee`
 --
-ALTER TABLE `EMPLOYEE`
+ALTER TABLE `employee`
   ADD PRIMARY KEY (`EMPLOYEE_ID`);
 
 --
--- Indexes for table `ENROLL`
+-- Indexes for table `enroll`
 --
-ALTER TABLE `ENROLL`
+ALTER TABLE `enroll`
   ADD PRIMARY KEY (`LIST_ID`,`ACTIVITY_ID`),
   ADD KEY `ENROLL_FK2` (`ACTIVITY_ID`);
 
 --
--- Indexes for table `HOTEL`
+-- Indexes for table `hike`
 --
-ALTER TABLE `HOTEL`
+ALTER TABLE `hike`
+  ADD PRIMARY KEY (`ACTIVITY_ID`);
+
+--
+-- Indexes for table `hotel`
+--
+ALTER TABLE `hotel`
   ADD PRIMARY KEY (`HOTEL_ID`);
 
 --
--- Indexes for table `LIST`
+-- Indexes for table `list`
 --
-ALTER TABLE `LIST`
+ALTER TABLE `list`
   ADD PRIMARY KEY (`LIST_ID`),
   ADD KEY `ACTIVITY_FK1` (`CUST_ID`);
 
 --
--- Indexes for table `RENT`
+-- Indexes for table `movie`
 --
-ALTER TABLE `RENT`
+ALTER TABLE `movie`
+  ADD PRIMARY KEY (`ACTIVITY_ID`);
+
+--
+-- Indexes for table `rent`
+--
+ALTER TABLE `rent`
   ADD PRIMARY KEY (`CUSTOMER_ID`,`RC_VIN`),
   ADD KEY `RENT_FK2` (`RC_VIN`);
 
 --
--- Indexes for table `RENTALCAR`
+-- Indexes for table `rentalcar`
 --
-ALTER TABLE `RENTALCAR`
+ALTER TABLE `rentalcar`
   ADD PRIMARY KEY (`RC_VIN`);
+
+--
+-- Indexes for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  ADD PRIMARY KEY (`ACTIVITY_ID`);
+
+--
+-- Indexes for table `showing`
+--
+ALTER TABLE `showing`
+  ADD PRIMARY KEY (`ACTIVITY_ID`,`THEATER_ID`),
+  ADD KEY `THEATER_ID` (`THEATER_ID`);
+
+--
+-- Indexes for table `theater`
+--
+ALTER TABLE `theater`
+  ADD PRIMARY KEY (`THEATER_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `ACTIVITY`
+-- AUTO_INCREMENT for table `activity`
 --
-ALTER TABLE `ACTIVITY`
+ALTER TABLE `activity`
   MODIFY `ACTIVITY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `CUSTOMER`
+-- AUTO_INCREMENT for table `customer`
 --
-ALTER TABLE `CUSTOMER`
+ALTER TABLE `customer`
   MODIFY `CUST_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `EMPLOYEE`
+-- AUTO_INCREMENT for table `employee`
 --
-ALTER TABLE `EMPLOYEE`
+ALTER TABLE `employee`
   MODIFY `EMPLOYEE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `HOTEL`
+-- AUTO_INCREMENT for table `hotel`
 --
-ALTER TABLE `HOTEL`
+ALTER TABLE `hotel`
   MODIFY `HOTEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `LIST`
+-- AUTO_INCREMENT for table `list`
 --
-ALTER TABLE `LIST`
+ALTER TABLE `list`
   MODIFY `LIST_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `theater`
+--
+ALTER TABLE `theater`
+  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `CUSTOMER`
+-- Constraints for table `customer`
 --
-ALTER TABLE `CUSTOMER`
-  ADD CONSTRAINT `CUST_FK1` FOREIGN KEY (`HOTEL_ID`) REFERENCES `HOTEL` (`HOTEL_ID`),
-  ADD CONSTRAINT `CUST_FK2` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `EMPLOYEE` (`EMPLOYEE_ID`);
+ALTER TABLE `customer`
+  ADD CONSTRAINT `CUST_FK1` FOREIGN KEY (`HOTEL_ID`) REFERENCES `hotel` (`HOTEL_ID`),
+  ADD CONSTRAINT `CUST_FK2` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employee` (`EMPLOYEE_ID`);
 
 --
--- Constraints for table `ENROLL`
+-- Constraints for table `enroll`
 --
-ALTER TABLE `ENROLL`
-  ADD CONSTRAINT `ENROLL_FK1` FOREIGN KEY (`LIST_ID`) REFERENCES `LIST` (`LIST_ID`),
-  ADD CONSTRAINT `ENROLL_FK2` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`);
+ALTER TABLE `enroll`
+  ADD CONSTRAINT `ENROLL_FK1` FOREIGN KEY (`LIST_ID`) REFERENCES `list` (`LIST_ID`),
+  ADD CONSTRAINT `ENROLL_FK2` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
 
 --
--- Constraints for table `LIST`
+-- Constraints for table `hike`
 --
-ALTER TABLE `LIST`
-  ADD CONSTRAINT `ACTIVITY_FK1` FOREIGN KEY (`CUST_ID`) REFERENCES `CUSTOMER` (`CUST_ID`);
+ALTER TABLE `hike`
+  ADD CONSTRAINT `hike_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
 
 --
--- Constraints for table `RENT`
+-- Constraints for table `list`
 --
-ALTER TABLE `RENT`
-  ADD CONSTRAINT `RENT_FK1` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `CUSTOMER` (`CUST_ID`),
-  ADD CONSTRAINT `RENT_FK2` FOREIGN KEY (`RC_VIN`) REFERENCES `RENTALCAR` (`RC_VIN`);
+ALTER TABLE `list`
+  ADD CONSTRAINT `ACTIVITY_FK1` FOREIGN KEY (`CUST_ID`) REFERENCES `customer` (`CUST_ID`);
+
+--
+-- Constraints for table `movie`
+--
+ALTER TABLE `movie`
+  ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
+
+--
+-- Constraints for table `rent`
+--
+ALTER TABLE `rent`
+  ADD CONSTRAINT `RENT_FK1` FOREIGN KEY (`CUSTOMER_ID`) REFERENCES `customer` (`CUST_ID`),
+  ADD CONSTRAINT `RENT_FK2` FOREIGN KEY (`RC_VIN`) REFERENCES `rentalcar` (`RC_VIN`);
+
+--
+-- Constraints for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
+
+--
+-- Constraints for table `showing`
+--
+ALTER TABLE `showing`
+  ADD CONSTRAINT `showing_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`),
+  ADD CONSTRAINT `showing_ibfk_2` FOREIGN KEY (`THEATER_ID`) REFERENCES `theater` (`THEATER_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
