@@ -82,9 +82,9 @@
       switch ($_GET['btnaction'])
         {
           case 'all': showActivity("ACTIVITY");  break;
-          case 'hike': showActivity("HIKE");  break;
-          case 'restaurant': showActivity("RESTAURANT");  break;
-          case 'movie': showActivity("MOVIE");  break;
+          case 'hike': showHike();  break;
+          case 'restaurant': showRestaurant();  break;
+          case 'movie': showMovie();  break;
           case 'list': getList();  break;
         }
     }
@@ -129,6 +129,128 @@
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['ACTIVITY_OPENTIME'] . "-" . $result['ACTIVITY_CLOSETIME'] . "</td>
       <td>" . $result['ACTIVITY_TYPE'] . "</td>
+      </tr>";
+    }
+    
+    echo "</table>";
+  }
+  ?>
+  
+  <?php
+  function showHike()
+  {
+    // echo "select data init";
+    global $db;
+
+    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, HIKE.HIKE_DIFFICULTY, 
+    HIKE.HIKE_LENGTH, HIKE.HIKE_TOPO_GAIN 
+    FROM ACTIVITY INNER JOIN HIKE WHERE ACTIVITY.ACTIVITY_ID=HIKE.ACTIVITY_ID";
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    // fetch() returns an array of one row
+
+    $statement->closeCursor();
+    
+    echo "<h2> HIKE </h2>";
+    echo "<table style='width:100%''>
+          <tr>
+            <th>NAME</th>
+            <th>DIFF</th>
+            <th>LENGTH</th>
+            <th>TOPO GAIN</th>
+          </tr>";
+    
+    foreach ($results as $result)
+    {
+      echo "<tr>
+      <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
+      <td>" . $result['HIKE_DIFFICULTY'] . "</td>
+      <td>" . $result['HIKE_LENGTH'] . "</td>
+      <td>" . $result['HIKE_TOPO_GAIN'] . "</td>
+      </tr>";
+    }
+    
+    echo "</table>";
+  }
+  ?>
+  
+  <?php
+  function showRestaurant()
+  {
+    // echo "select data init";
+    global $db;
+
+    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, RESTAURANT.RESTAURANT_RATING, RESTAURANT.RESTAURANT_PRICE_RANGE, RESTAURANT.RESTAURANT_CUISINE 
+    FROM ACTIVITY INNER JOIN RESTAURANT WHERE ACTIVITY.ACTIVITY_ID=RESTAURANT.ACTIVITY_ID";
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    // fetch() returns an array of one row
+
+    $statement->closeCursor();
+    
+    echo "<h2> RESTAURANT </h2>";
+    echo "<table style='width:100%''>
+          <tr>
+            <th>NAME</th>
+            <th>CUISINE</th>
+            <th>PRICE RANGE</th>
+            <th>STARS</th>
+          </tr>";
+    
+    foreach ($results as $result)
+    {
+      echo "<tr>
+      <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
+      <td>" . $result['RESTAURANT_CUISINE'] . "</td>
+      <td>" . $result['RESTAURANT_PRICE_RANGE'] . "</td>
+      <td>" . $result['RESTAURANT_RATING'] . "</td>
+      </tr>";
+    }
+    
+    echo "</table>";
+  }
+  ?>
+  
+  <?php
+  function showMovie()
+  {
+    // echo "select data init";
+    global $db;
+
+    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, 
+    MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
+    FROM ACTIVITY INNER JOIN MOVIE WHERE ACTIVITY.ACTIVITY_ID=MOVIE.ACTIVITY_ID";
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    // fetch() returns an array of one row
+
+    $statement->closeCursor();
+    
+    echo "<h2> MOVIE </h2>";
+    echo "<table style='width:100%''>
+          <tr>
+            <th>NAME</th>
+            <th>RATING</th>
+            <th>GENRE</th>
+            <th>STARS</th>
+          </tr>";
+    
+    foreach ($results as $result)
+    {
+      echo "<tr>
+      <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
+      <td>" . $result['MOVIE_PARENT_RATING'] . "</td>
+      <td>" . $result['MOVIE_GENRE'] . "</td>
+      <td>" . $result['MOVIE_RATING'] . "</td>
       </tr>";
     }
     
