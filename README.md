@@ -11,7 +11,7 @@ Preston Wright
 An informational page, simply with a logo and a quick summary (perhaps Lorem Ipsum)
 
 ### Activities Page
-A management page where activities can be edited (leads to [Edit Page](#EditPage)) or deleted as well as added to lists
+A management page where activities can be edited (leads to [Edit Page](#edit-page)) or deleted as well as added to lists
 
 ### Users Database 
 (with Customers + Employees)
