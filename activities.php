@@ -62,6 +62,7 @@
           <input type="submit" name="btnaction" value="hike" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='hike'){echo "secondary";}else{echo "primary";} ?>" />
           <input type="submit" name="btnaction" value="restaurant" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='restaurant'){echo "secondary";}else{echo "primary";} ?>" />
           <input type="submit" name="btnaction" value="movie" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='movie'){echo "secondary";}else{echo "primary";} ?>" />
+          <input type="submit" name="btnaction" value="list" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='list'){echo "secondary";}else{echo "primary";} ?>" />
           </div>
         </form>
         <br />
@@ -84,6 +85,7 @@
           case 'hike': showActivity("HIKE");  break;
           case 'restaurant': showActivity("RESTAURANT");  break;
           case 'movie': showActivity("MOVIE");  break;
+          case 'list': getList();  break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -113,7 +115,7 @@
 
     $statement->closeCursor();
     
-    echo "<h2> All Activities </h2>";
+    echo "<h2> $act </h2>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
@@ -127,6 +129,44 @@
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['ACTIVITY_OPENTIME'] . "-" . $result['ACTIVITY_CLOSETIME'] . "</td>
       <td>" . $result['ACTIVITY_TYPE'] . "</td>
+      </tr>";
+    }
+    
+    echo "</table>";
+  }
+  ?>
+  
+  <?php
+  /*************************/
+  /** get data **/
+  function getList()
+  {
+    // echo "select data init";
+    global $db;
+
+    $query = "SELECT CUSTOMER.CUST_FNAME, CUSTOMER.CUST_LNAME, LIST.LIST_NAME 
+    FROM CUSTOMER INNER JOIN LIST WHERE CUSTOMER.CUST_ID=LIST.CUST_ID";
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    // fetch() returns an array of one row
+
+    $statement->closeCursor();
+    
+    echo "<h2> Lists </h2>";
+    echo "<table style='width:100%''>
+          <tr>
+            <th>NAME</th>
+            <th>LIST NAME</th>
+          </tr>";
+    
+    foreach ($results as $result)
+    {
+      echo "<tr>
+      <td>" . $result['CUST_LNAME'] . ", " . $result['CUST_FNAME'] .
+      "<td>" . $result['LIST_NAME'] . "</td>
       </tr>";
     }
     
