@@ -142,7 +142,7 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, HIKE.HIKE_DIFFICULTY, 
+    $query = "SELECT ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, HIKE.HIKE_DIFFICULTY, 
     HIKE.HIKE_LENGTH, HIKE.HIKE_TOPO_GAIN 
     FROM ACTIVITY INNER JOIN HIKE WHERE ACTIVITY.ACTIVITY_ID=HIKE.ACTIVITY_ID";
 
@@ -150,9 +150,9 @@
     $statement->execute();
     
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+      <input type='submit' name='btnaction' value='delete' class='btn btn-danger' /></form>";
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
@@ -178,6 +178,10 @@
       <td>" . $btndel . "</td>
       <td>" . $btnedit . "</td>
       </tr>";
+
+      if(isset($_POST['delete'])) {
+        deleteActivity("HIKE", $result['ACTIVITY_ID']);
+      }
     }
     
     echo "</table>";
@@ -317,8 +321,33 @@
     echo "</table>";
   }
   ?>
-  
-  
+
+  <?php
+  /*************************/
+  /** delete data **/
+  function deleteActivity($table_name, $id)
+  {
+    global $db;
+
+    $query = "DELETE FROM $table_name WHERE $id = $table_name.ACTIVITY_ID";
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    if ($table_name == "HIKE" || $table_name == "MOVIE" || $table_name == "RESTAURANT") {
+      $query = "DELETE FROM ACTIVITY WHERE $id = ACTIVITY.ACTIVITY_ID";
+      $statement = $db->prepare($query);
+      $statement->execute();
+    }
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $results = $statement->fetchAll();
+    // fetch() returns an array of one row
+
+    $statement->closeCursor();
+  }
+  ?>  
   
         </div>
     </div>
