@@ -133,6 +133,9 @@
     }
     
     echo "</table>";
+
+    require("db-add.php");
+    addActivityForm();
   }
   ?>
   
@@ -228,6 +231,10 @@
     }
     
     echo "</table>";
+
+    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+    echo "<td>" . $btnadd . "</td> </tr";
   }
   ?>
   
