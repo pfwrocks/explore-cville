@@ -148,6 +148,11 @@
 
     $statement = $db->prepare($query);
     $statement->execute();
+    
+    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+      <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+      <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
@@ -170,6 +175,8 @@
       <td>" . $result['HIKE_DIFFICULTY'] . "</td>
       <td>" . $result['HIKE_LENGTH'] . "</td>
       <td>" . $result['HIKE_TOPO_GAIN'] . "</td>
+      <td>" . $btndel . "</td>
+      <td>" . $btnedit . "</td>
       </tr>";
     }
     
@@ -194,6 +201,11 @@
 
     $statement->closeCursor();
     
+    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+      <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+      <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+    
     echo "<h2> RESTAURANT </h2>";
     echo "<table style='width:100%''>
           <tr>
@@ -210,6 +222,8 @@
       <td>" . $result['RESTAURANT_CUISINE'] . "</td>
       <td>" . $result['RESTAURANT_PRICE_RANGE'] . "</td>
       <td>" . $result['RESTAURANT_RATING'] . "</td>
+      <td>" . $btndel . "</td>
+      <td>" . $btnedit . "</td>
       </tr>";
     }
     
@@ -235,6 +249,11 @@
 
     $statement->closeCursor();
     
+    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+    
     echo "<h2> MOVIE </h2>";
     echo "<table style='width:100%''>
           <tr>
@@ -251,6 +270,9 @@
       <td>" . $result['MOVIE_PARENT_RATING'] . "</td>
       <td>" . $result['MOVIE_GENRE'] . "</td>
       <td>" . $result['MOVIE_RATING'] . "</td>
+      <td>" . $btndel . "</td>
+      <td>" . $btnedit . "</td>
+      
       </tr>";
     }
     
@@ -277,7 +299,7 @@
 
     $statement->closeCursor();
     
-    echo "<h2> Lists </h2>";
+    echo "<h2> LIST </h2>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
