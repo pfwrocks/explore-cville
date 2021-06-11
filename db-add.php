@@ -25,8 +25,6 @@ echo "<html>
     <body>
     <form action = 'activities.php' method='post'>
     Name: <input type='text' name='activity_name'><br>
-    Opens: <input type='text' name='activity_opentime'><br>
-    Closes: <input type='text' name='activity_closetime'><br>
     Type: <input type='text' name='activity_type'><br>
     URL: <input type='text' name='activity_url'><br>
     <input type='submit'>
@@ -37,29 +35,23 @@ echo "activity name is";
 echo $_POST['activity_name'];
 addActivity(
     $_POST['activity_name'], 
-    $_POST['activity_opentime'],
-    $_POST['activity_closetime'],
     $_POST['activity_type'],
     $_POST['activity_url']
 );
 }
 // Helper for addActivityForm with mySQL.
-function addActivity($name, $open, $close, $type, $url)
+function addActivity($name, $type, $url)
 {
     global $db;
     $query = 
     "INSERT INTO ACTIVITY
         (ACTIVITY_NAME, 
-        ACTIVITY_OPENTIME, 
-        ACTIVITY_CLOSETIME, 
         ACTIVITY_TYPE,
         ACTIVITY_URL) 
-    VALUES (:name, :open, :close, :type, :url)";
+    VALUES (:name, :type, :url)";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':name', $name);
-    $statement->bindValue(':open', $open);
-    $statement->bindValue(':close', $close);
     $statement->bindValue(':type', $type);
     $statement->bindValue(':url', $url);
     $statement->execute();
@@ -75,8 +67,6 @@ function addHikeForm()
         <body>
         <form action = 'activities.php?btnaction=hike' method='post'>
         Name: <input type='text' name='activity_name'><br>
-        Opens: <input type='text' name='activity_opentime'><br>
-        Closes: <input type='text' name='activity_closetime'><br>
         Type: <input type='text' name='activity_type'><br>
         URL: <input type='text' name='activity_url'><br>
         <br>
@@ -93,8 +83,6 @@ function addHikeForm()
     if(isset($_POST['activity_name']))
     {
         addActivity($_POST['activity_name'], 
-            $_POST['activity_opentime'],
-            $_POST['activity_closetime'],
             $_POST['activity_type'],
             $_POST['activity_url']);
         addHike(
@@ -149,8 +137,6 @@ function addRestaurantForm(){
         <body>
         <form action = 'activities.php?btnaction=hike' method='post'>
         Name: <input type='text' name='activity_name'><br>
-        Opens: <input type='text' name='activity_opentime'><br>
-        Closes: <input type='text' name='activity_closetime'><br>
         Type: <input type='text' name='activity_type'><br>
         URL: <input type='text' name='activity_url'><br>
         <br>
@@ -166,8 +152,6 @@ function addRestaurantForm(){
     if(isset($_POST['activity_name']))
     {
         addActivity($_POST['activity_name'], 
-            $_POST['activity_opentime'],
-            $_POST['activity_closetime'],
             $_POST['activity_type'],
             $_POST['activity_url']);
         addRestaurant(
