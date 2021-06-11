@@ -67,7 +67,6 @@ function addHikeForm()
         <body>
         <form action = 'activities.php?btnaction=hike' method='post'>
         Name: <input type='text' name='activity_name'><br>
-        Type: <input type='text' name='activity_type'><br>
         URL: <input type='text' name='activity_url'><br>
         <br>
         Difficulty: <input type='text' name='hike_difficulty'><br>
@@ -83,7 +82,7 @@ function addHikeForm()
     if(isset($_POST['activity_name']))
     {
         addActivity($_POST['activity_name'], 
-            $_POST['activity_type'],
+            "HIKE",
             $_POST['activity_url']);
         addHike(
             getNewActivitiesID(),
@@ -135,9 +134,8 @@ function addRestaurantForm(){
     echo"<p> Add activity </p>";
     echo "<html>
         <body>
-        <form action = 'activities.php?btnaction=hike' method='post'>
+        <form action = 'activities.php?btnaction=restaurant' method='post'>
         Name: <input type='text' name='activity_name'><br>
-        Type: <input type='text' name='activity_type'><br>
         URL: <input type='text' name='activity_url'><br>
         <br>
         Rating: <input type='text' name='res_rating'><br>
@@ -152,7 +150,7 @@ function addRestaurantForm(){
     if(isset($_POST['activity_name']))
     {
         addActivity($_POST['activity_name'], 
-            $_POST['activity_type'],
+            "RESTAURANT",
             $_POST['activity_url']);
         addRestaurant(
             getNewActivitiesID(),
