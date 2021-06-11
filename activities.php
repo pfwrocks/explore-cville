@@ -235,7 +235,8 @@
     
     echo "</table>";
 
-    addHikeForm();
+    require("db-add.php");
+    addRestaurantForm();
   }
   ?>
   
