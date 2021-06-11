@@ -186,8 +186,6 @@ function addRestaurant($id, $name, $rate, $pr, $cui, $st, $zip){
     $statement->execute();
     $statement->closeCursor();
 }
-<<<<<<< HEAD
-=======
 
 
 # Add a new movie 
@@ -299,5 +297,4 @@ function addList($cust_id, $list_id, $name){
     $statement->closeCursor();
 }
 
->>>>>>> db-add
 ?>
