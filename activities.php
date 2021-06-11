@@ -133,9 +133,6 @@
     }
     
     echo "</table>";
-
-    require("db-add.php");
-    addActivityForm();
   }
   ?>
   
