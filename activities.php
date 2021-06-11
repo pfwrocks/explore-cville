@@ -187,8 +187,10 @@
     }
     
     echo "</table>";
-    }
-  
+
+    require('db-add.php');
+    addHikeForm();
+  }
   ?>
   
   <?php
@@ -237,6 +239,9 @@
     }
     
     echo "</table>";
+
+    require("db-add.php");
+    addRestaurantForm();
   }
   ?>
   
