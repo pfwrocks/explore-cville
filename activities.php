@@ -121,7 +121,6 @@
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
-            <th>HOURS</th>
             <th>TYPE</th>
           </tr>";
     
@@ -129,7 +128,6 @@
     {
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
-      <td>" . $result['ACTIVITY_OPENTIME'] . "-" . $result['ACTIVITY_CLOSETIME'] . "</td>
       <td>" . $result['ACTIVITY_TYPE'] . "</td>
       </tr>";
     }
@@ -211,7 +209,7 @@
     $statement->closeCursor();
     
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
     
     echo "<h2> RESTAURANT </h2>";
     echo "<table style='width:100%''>
@@ -264,9 +262,9 @@
     $statement->closeCursor();
     
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
+        <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' /></form>";
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
     
     echo "<h2> MOVIE </h2>";
     echo "<table style='width:100%''>
