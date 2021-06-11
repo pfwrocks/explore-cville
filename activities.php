@@ -289,6 +289,8 @@
     }
     
     echo "</table>";
+    require("db-add.php");
+    addMovieForm(); 
   }
   ?>
   
@@ -327,6 +329,9 @@
     }
     
     echo "</table>";
+
+    require("db-add.php");
+    addListForm();
   }
   ?>
 
