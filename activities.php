@@ -86,6 +86,8 @@
           case 'restaurant': showRestaurant();  break;
           case 'movie': showMovie();  break;
           case 'list': getList();  break;
+          case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
+          case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -142,17 +144,15 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, HIKE.HIKE_DIFFICULTY, 
+    $query = "SELECT ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, HIKE.HIKE_DIFFICULTY, 
     HIKE.HIKE_LENGTH, HIKE.HIKE_TOPO_GAIN 
     FROM ACTIVITY INNER JOIN HIKE WHERE ACTIVITY.ACTIVITY_ID=HIKE.ACTIVITY_ID";
 
     $statement = $db->prepare($query);
     $statement->execute();
     
-    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
+      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
@@ -170,6 +170,11 @@
     
     foreach ($results as $result)
     {
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_hike' class='btn btn-danger' />
+      </form>";
+
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['HIKE_DIFFICULTY'] . "</td>
@@ -178,6 +183,7 @@
       <td>" . $btndel . "</td>
       <td>" . $btnedit . "</td>
       </tr>";
+
     }
     
     echo "</table>";
@@ -193,7 +199,7 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, RESTAURANT.RESTAURANT_RATING, RESTAURANT.RESTAURANT_PRICE_RANGE, RESTAURANT.RESTAURANT_CUISINE 
+    $query = "SELECT ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, RESTAURANT.RESTAURANT_RATING, RESTAURANT.RESTAURANT_PRICE_RANGE, RESTAURANT.RESTAURANT_CUISINE 
     FROM ACTIVITY INNER JOIN RESTAURANT WHERE ACTIVITY.ACTIVITY_ID=RESTAURANT.ACTIVITY_ID";
 
     $statement = $db->prepare($query);
@@ -204,8 +210,6 @@
 
     $statement->closeCursor();
     
-    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='list' class='btn btn-danger' /></form>";
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
       <input type='submit' name='btnaction' value='list' class='btn btn-info' /></form>";
     
@@ -220,6 +224,10 @@
     
     foreach ($results as $result)
     {
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_restaurant' class='btn btn-danger' />
+      </form>";
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['RESTAURANT_CUISINE'] . "</td>
@@ -323,8 +331,36 @@
     echo "</table>";
   }
   ?>
-  
-  
+
+  <?php
+  /*************************/
+  /** delete data **/
+  function deleteActivity($table_name, $id)
+  {
+    global $db;
+
+    if ($id < 0) {
+      echo "No ID";
+      return;
+    };
+
+    try {
+      $query = "DELETE FROM $table_name WHERE $table_name.ACTIVITY_ID = $id";
+      echo $query, '<br>';
+      $statement = $db->exec($query);
+
+      if ($table_name == "HIKE" || $table_name == "MOVIE" || $table_name == "RESTAURANT") {
+        $query = "DELETE FROM ACTIVITY WHERE $table_name.ACTIVITY_ID = $id";
+        $statement = $db->exec($query);
+      }
+
+      echo "Record deleted successfully";
+    } catch (Exception $e) {
+      echo $query . "<br>" . $e->getMessage();
+    }
+    
+  }
+  ?>  
   
         </div>
     </div>
