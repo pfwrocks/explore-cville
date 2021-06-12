@@ -25,7 +25,7 @@
 
 <body id="page-top">
 
-  <?php include 'navigation.php';?>
+  <?php include './components/navigation.php';?>
 
   <!-- Masthead-->
   <header class="masthead bg-primary text-white text-center">

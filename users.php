@@ -25,7 +25,7 @@
 
 <body id="page-top">
 
-  <?php include 'navigation.php';?>
+  <?php include './components/navigation.php';?>
 
   <!-- Masthead-->
   <header class="masthead bg-primary text-white text-center">
@@ -43,8 +43,8 @@
         <h4> Views </h4>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" style="line-height:50px">
           <div class="btn-group-vertical">
-          <input type="submit" name="btnaction" value="employee" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='employee'){echo "secondary";}else{echo "primary";} ?>" />
           <input type="submit" name="btnaction" value="customer" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='customer'){echo "secondary";}else{echo "primary";} ?>" />
+          <input type="submit" name="btnaction" value="employee" class="btn text-white bg-<?php if(isset($_GET['btnaction'])&&$_GET['btnaction']=='employee'){echo "secondary";}else{echo "primary";} ?>" />
           </div>
         </form>
         <br />
