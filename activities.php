@@ -148,9 +148,6 @@
 
     $statement = $db->prepare($query);
     $statement->execute();
-    
-    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
     $results = $statement->fetchAll();
     // fetch() returns an array of one row
@@ -172,6 +169,10 @@
         <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='delete_hike' class='btn btn-danger' />
       </form>";
+      
+      $btnedit = "<form action='edit-hike.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
