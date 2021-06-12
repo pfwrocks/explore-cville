@@ -102,9 +102,6 @@
 
     $additional_headers = ($type == "CUSTOMER") 
       ? "<th>ADDRESS</th>
-      <th>CITY</th>
-      <th>STATE</th>
-      <th>ZIP CODE</th>
       <th>EMPLOYEE</th>
       <th>HOTEL</th>
       <th>CAR</th>"
@@ -115,7 +112,7 @@
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
-            <th>PHONE NUMBER</th>" .
+            <th>PHONE</th>" .
             $additional_headers .
           "</tr>";
     
@@ -130,10 +127,7 @@
       // TODO: Fix formatting issue of customer's employee + zip code -- the table is too big
       // TODO: Link to the appropriate edit pages
       $additional_data = ($type == "CUSTOMER") 
-      ? "<td>" . $result['CUST_ADDRESS'] . "</td>
-      <td>" . "CITY" . "</td>
-      <td>" . "STATE" . "</td
-      <td>" . $result['CUST_ZIP'] . "</td
+      ? "<td>" . $result['CUST_ADDRESS'] . ", " . "CITY" . ", " . "STATE" . " " . $result['CUST_ZIP'] . "</td
       <td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
       <td>" . $result['HOTEL_NAME'] . "</td>
       <td>" . "CAR" . "</td>"
