@@ -86,8 +86,15 @@
     global $db;
 
     $table_name = ($type == "CUSTOMER") ? "CUST_" : "EMPLOYEE_";
-
-    $query = "SELECT * FROM $type";
+    // TODO: Add in rental car info once database has been cleaned
+    // TODO: Add in city and state
+    $query = ($type == "CUSTOMER")
+      ? "SELECT *
+          FROM CUSTOMER, EMPLOYEE, HOTEL 
+          WHERE CUSTOMER.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
+          AND CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID"
+      : "SELECT * FROM EMPLOYEE";
+      
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll();
@@ -117,17 +124,18 @@
       $button_type = strtolower($type);
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='text' name='id' value='" . $result[$table_name.'ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='delete_$button_type' class='btn btn-danger' />
+        <input type='submit' name='btnaction' value='delete_$button_type' class='btn btn-danger'/>
       </form>";
 
-      // TODO: Fix formatting issue of customer's employee + zip code
+      // TODO: Fix formatting issue of customer's employee + zip code -- the table is too big
+      // TODO: Link to the appropriate edit pages
       $additional_data = ($type == "CUSTOMER") 
       ? "<td>" . $result['CUST_ADDRESS'] . "</td>
       <td>" . "CITY" . "</td>
       <td>" . "STATE" . "</td
       <td>" . $result['CUST_ZIP'] . "</td
-      <td>" . "EMPLOYEE" . "</td>
-      <td>" . "HOTEL" . "</td>
+      <td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
+      <td>" . $result['HOTEL_NAME'] . "</td>
       <td>" . "CAR" . "</td>"
       : "<td>" . $result['EMPLOYEE_EMAIL'] . "</td>
       <td>" . $result['EMPLOYEE_TITLE'] . "</td>";
