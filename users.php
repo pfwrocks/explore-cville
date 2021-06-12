@@ -88,10 +88,12 @@
     $table_name = ($type == "CUSTOMER") ? "CUST_" : "EMPLOYEE_";
     // TODO: Add in rental car info once database has been cleaned
     // TODO: Add in city and state
+    // TODO: Figure out how to show customers with no employee correctly
     $query = ($type == "CUSTOMER")
       ? "SELECT *
           FROM CUSTOMER, EMPLOYEE, HOTEL 
           WHERE CUSTOMER.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
+          OR CUSTOMER.EMPLOYEE_ID IS NULL
           AND CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID"
       : "SELECT * FROM EMPLOYEE";
       
@@ -126,6 +128,7 @@
 
       // TODO: Fix formatting issue of customer's employee + zip code -- the table is too big
       // TODO: Link to the appropriate edit pages
+      $employee = ($result['EM'])
       $additional_data = ($type == "CUSTOMER") 
       ? "<td>" . $result['CUST_ADDRESS'] . ", " . "CITY" . ", " . "STATE" . " " . $result['CUST_ZIP'] . "</td
       <td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
@@ -159,14 +162,15 @@
     };
 
     try {
-      $query = "DELETE FROM $type WHERE $type.$id_name = $id";
-      $statement = $db->exec($query);
-
       if ($type == "EMPLOYEE") {
-        // TODO: Make all customers with that employee have a null value
+        $query = "UPDATE CUSTOMER SET EMPLOYEE_ID = NULL WHERE EMPLOYEE_ID = $id";
+        $statement = $db->exec($query);
       } else {
         // TODO: Make all the things dependent on customers have a null value
       }
+
+      $query = "DELETE FROM $type WHERE $type.$id_name = $id";
+      $statement = $db->exec($query);
 
       echo $query, '<br>';
       echo "Record deleted successfully";
