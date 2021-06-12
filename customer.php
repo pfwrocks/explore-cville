@@ -31,7 +31,7 @@
   <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Heading-->
-          <h1 class="masthead-heading text-uppercase mb-0">Activities</h1>
+          <h1 class="masthead-heading text-uppercase mb-0">Customers</h1>
       </div>
   </header>
 
