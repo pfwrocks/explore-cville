@@ -130,7 +130,7 @@
       ? "<td>" . $result['CUST_ADDRESS'] . ", " . "CITY" . ", " . "STATE" . " " . $result['CUST_ZIP'] . "</td
       <td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
       <td>" . $result['HOTEL_NAME'] . "</td>
-      <td>" . "CAR" . "</td>"
+      <td>" . "COLOR" . " " . "MAKE" . " " . "MODEL" . "</td>"
       : "<td>" . $result['EMPLOYEE_EMAIL'] . "</td>
       <td>" . $result['EMPLOYEE_TITLE'] . "</td>";
 
