@@ -76,12 +76,8 @@ function showRentalCar(){
          <th>VIN</th>
          <th>MAKE</th>
          <th>MODEL</th>
-         <th>COST/DAY</th>
          <th>COLOR</th>
          <th>SEATS</th>
-         <th>TRANSMISSION</th>
-         <th>COMPANY</th>
-         <th>PICKUP ADDRESS </th>
          <th>STATUS</th>
        </tr>";
  
@@ -91,36 +87,17 @@ function showRentalCar(){
    <td>" . $result['RC_VIN'] . "</td>
    <td>" . $result['RC_MAKE'] . "</td>
    <td>" . $result['RC_MODEL'] . "</td>
-   <td>" . $result['RC_COSTPERDAY'] . "</td>
    <td>" . $result['RC_COLOR'] . "</td>
    <td>" . $result['RC_SEATS'] . "</td>
-   <td>" . $result['RC_TRANSMISSION'] . "</td>
-   <td>" . $result['RC_RENTAL_COMPANY'] . "</td>
-   <td>" . $result['RC_PICKUP_STREET'] . ", " . $result['RC_PICKUP_CITY'] . ", " . $result['RC_PICKUP_STATE'] . ", " . $result['RC_PICKUP_ZIP'] . "</td>   
-   <td>" . isRCAvailable($result['RC_AVAILABLE'], $result['RC_VIN']) . "</td>
+   <td>" . /*TODO REFORMAT*/ isRCAvailable($result['RC_VIN'], $result["CUST_ID"]) . "</td>
    </tr>";
  }
  
  echo "</table>";
 }
 
-function isRCAvailable($num, $vin){
-    if($num)
-    {
-        return "Available";
-    }
-
-    $ret = getCustID($vin);
-
-    if($ret === -1)
-    {
-        return "ERROR.";
-    }
-    return "Rented: " . $ret;
-}
-
-function getCustID($vin)
-{
+    /*TODO:*/ 
+function isRCAvailable($vin, $id){
     global $db;
 
     $query = "SELECT * FROM RENT";
@@ -138,31 +115,9 @@ function getCustID($vin)
             return $result['CUST_ID'];
         }
     }
-    return -1;
+    return "Available";
 
 }
-
-/* header can go here. */
-
-/* body starts here. */
-
-    /* Table to VIEW car attributes: */
-
-        /* From mySQL. 
-            RC_VIN	RC_MAKE	RC_MODEL	RC_COSTPERDAY	RC_AVAILABLE	RC_COLOR	RC_SEATS	RC_RENTAL_COMPANY	RC_TRANSMISSION	RC_PICKUP_STREET	RC_PICKUP_ZIP	
-            1	GMC	Yukon	261	0	Black	7	Hertz	Automatic	1900 Rio Hill Center, Charlottesville, USA		
-            2	Mitsubishi	Mirage	64	1	Grey	4	Enterprise	Automatic	1650 Seminole Trl, Charlottesville, USA		
-            3	Chrysler 	300	124	1	White	5	Enterprise	Automatic	CHO Airport, Charlottesville, Virginia	
-        */ 	
-
-
-    /* ADD a car. Have an option for a customer to rent */
-
-    /* EDIT a car (including customer if any who is renting it */ 
-     
-
-
-
 ?> 
 
 
