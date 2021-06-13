@@ -91,11 +91,10 @@
     // TODO: Figure out how to show customers with no employee correctly
     $query = ($type == "CUSTOMER")
       ? "SELECT *
-          FROM CUSTOMER, EMPLOYEE, HOTEL, RENTALCAR 
-          WHERE CUSTOMER.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
-          OR CUSTOMER.EMPLOYEE_ID IS NULL
-          AND CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID
-          AND CUSTOMER.RC_ID = RENTALCAR.RC_ID"
+        FROM CUSTOMER
+        LEFT JOIN EMPLOYEE ON CUSTOMER.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
+        LEFT JOIN HOTEL ON CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID
+        LEFT JOIN RENTALCAR ON CUSTOMER.RC_ID = RENTALCAR.RC_ID"
       : "SELECT * FROM EMPLOYEE";
       
     $statement = $db->prepare($query);
