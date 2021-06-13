@@ -73,6 +73,7 @@
           case 'list': getList();  break;
           case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
           case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
+          case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -234,7 +235,7 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, 
+    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, 
     MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
     FROM ACTIVITY INNER JOIN MOVIE WHERE ACTIVITY.ACTIVITY_ID=MOVIE.ACTIVITY_ID";
 
@@ -246,8 +247,6 @@
 
     $statement->closeCursor();
     
-    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' /></form>";
     $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
     
@@ -262,6 +261,11 @@
     
     foreach ($results as $result)
     {
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' />
+      </form>";
+
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['MOVIE_PARENT_RATING'] . "</td>
