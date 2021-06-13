@@ -91,10 +91,11 @@
     // TODO: Figure out how to show customers with no employee correctly
     $query = ($type == "CUSTOMER")
       ? "SELECT *
-          FROM CUSTOMER, EMPLOYEE, HOTEL 
+          FROM CUSTOMER, EMPLOYEE, HOTEL, RENTALCAR 
           WHERE CUSTOMER.EMPLOYEE_ID = EMPLOYEE.EMPLOYEE_ID
           OR CUSTOMER.EMPLOYEE_ID IS NULL
-          AND CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID"
+          AND CUSTOMER.HOTEL_ID = HOTEL.HOTEL_ID
+          AND CUSTOMER.RC_ID = RENTALCAR.RC_ID"
       : "SELECT * FROM EMPLOYEE";
       
     $statement = $db->prepare($query);
@@ -129,7 +130,7 @@
       $additional_data = ($type == "CUSTOMER") 
       ? "<td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
       <td>" . $result['HOTEL_NAME'] . "</td>
-      <td>" . "COLOR" . " " . "MAKE" . " " . "MODEL" . "</td>"
+      <td>" . $result['RC_COLOR'] . " " . $result['RC_MAKE'] . " " . $result['RC_MODEL'] . "</td>"
       : "<td>" . $result['EMPLOYEE_EMAIL'] . "</td>
       <td>" . $result['EMPLOYEE_TITLE'] . "</td>";
 
