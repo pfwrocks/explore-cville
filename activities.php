@@ -209,9 +209,6 @@
 
     $statement->closeCursor();
     
-    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-      <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
-    
     echo "<h2> RESTAURANT </h2>";
     echo "<table style='width:100%''>
           <tr>
@@ -227,6 +224,9 @@
         <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='delete_restaurant' class='btn btn-danger' />
       </form>";
+      $btnedit = "<form action='edit-restaurant.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['RESTAURANT_CUISINE'] . "</td>
@@ -249,9 +249,9 @@
   {
     // echo "select data init";
     global $db;
-
-    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, 
-    MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
+    
+    $query = "SELECT ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_URL, 
+    ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
     FROM ACTIVITY INNER JOIN MOVIE WHERE ACTIVITY.ACTIVITY_ID=MOVIE.ACTIVITY_ID";
 
     $statement = $db->prepare($query);
@@ -264,8 +264,6 @@
     
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' /></form>";
-    $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
     
     echo "<h2> MOVIE </h2>";
     echo "<table style='width:100%''>
@@ -278,6 +276,10 @@
     
     foreach ($results as $result)
     {
+      $btnedit = "<form action='edit-movie.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+      
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['MOVIE_PARENT_RATING'] . "</td>
