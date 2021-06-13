@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2021 at 05:37 PM
+-- Generation Time: Jun 13, 2021 at 05:59 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -16,9 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
 DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
-
 --
 -- Database: `explore-cville`
 --
@@ -90,8 +88,8 @@ CREATE TABLE `CUSTOMER` (
 
 INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`, `RC_ID`) VALUES
 (1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1, 2),
-(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 2, 1),
-(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2, 3);
+(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, NULL, 1),
+(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -174,14 +172,10 @@ INSERT INTO `HIKE` (`ACTIVITY_ID`, `HIKE_DIFFICULTY`, `HIKE_LENGTH`, `HIKE_TOPO_
 CREATE TABLE `HOTEL` (
   `HOTEL_ID` int(11) NOT NULL,
   `HOTEL_NAME` varchar(100) NOT NULL,
-  `HOTEL_NIGHTLYCOST` int(11) NOT NULL,
-  `HOTEL_MAXCAPACITY` int(11) NOT NULL,
-  `HOTEL_CURRCAPACITY` int(11) NOT NULL,
   `HOTEL_STREET` varchar(50) NOT NULL,
   `HOTEL_CITY` varchar(20) NOT NULL,
   `HOTEL_STATE` varchar(3) NOT NULL,
   `HOTEL_ZIP` varchar(10) NOT NULL,
-  `HOTEL_CONTINENTAL` tinyint(1) NOT NULL,
   `HOTEL_AREACODE` int(3) NOT NULL,
   `HOTEL_PHONE` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -190,10 +184,10 @@ CREATE TABLE `HOTEL` (
 -- Dumping data for table `HOTEL`
 --
 
-INSERT INTO `HOTEL` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_NIGHTLYCOST`, `HOTEL_MAXCAPACITY`, `HOTEL_CURRCAPACITY`, `HOTEL_STREET`, `HOTEL_CITY`, `HOTEL_STATE`, `HOTEL_ZIP`, `HOTEL_CONTINENTAL`, `HOTEL_AREACODE`, `HOTEL_PHONE`) VALUES
-(1, 'Red Roof Inn', 101, 50, 17, '2011 Holiday Drive', 'Charlottesville', 'VA', '22901', 0, 703, 222222),
-(2, 'Graduate', 439, 30, 15, '1309 W Main St', 'Charlottesville', 'VA', '22903', 0, 0, 333333),
-(3, 'Oakhurst Inn', 339, 12, 11, '100 Oakhurst Circle', 'Charlottesville', 'VA', '22903', 0, 0, 444444);
+INSERT INTO `HOTEL` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_STREET`, `HOTEL_CITY`, `HOTEL_STATE`, `HOTEL_ZIP`, `HOTEL_AREACODE`, `HOTEL_PHONE`) VALUES
+(1, 'Red Roof Inn', '2011 Holiday Drive', 'Charlottesville', 'VA', '22901', 703, 222222),
+(2, 'Graduate', '1309 W Main St', 'Charlottesville', 'VA', '22903', 0, 333333),
+(3, 'Oakhurst Inn', '100 Oakhurst Circle', 'Charlottesville', 'VA', '22903', 0, 444444);
 
 -- --------------------------------------------------------
 
