@@ -1,22 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2021 at 05:12 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Jun 13, 2021 at 05:37 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENT`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 
 --
 -- Database: `explore-cville`
@@ -79,17 +80,18 @@ CREATE TABLE `CUSTOMER` (
   `CUST_STATE` varchar(3) NOT NULL,
   `CUST_ZIP` int(11) NOT NULL,
   `HOTEL_ID` int(11) DEFAULT NULL,
-  `EMPLOYEE_ID` int(11) DEFAULT NULL
+  `EMPLOYEE_ID` int(11) DEFAULT NULL,
+  `RC_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `CUSTOMER`
 --
 
-INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`) VALUES
-(1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1),
-(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 2),
-(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2);
+INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`, `RC_ID`) VALUES
+(1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1, 2),
+(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 2, 1),
+(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -241,33 +243,11 @@ INSERT INTO `MOVIE` (`ACTIVITY_ID`, `MOVIE_PARENT_RATING`, `MOVIE_GENRE`, `MOVIE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `RENT`
---
-
-CREATE TABLE `RENT` (
-  `CUST_ID` int(11) NOT NULL,
-  `RC_VIN` int(11) NOT NULL,
-  `RENT_STARTDATE` date DEFAULT NULL,
-  `RENT_ENDDATE` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `RENT`
---
-
-INSERT INTO `RENT` (`CUST_ID`, `RC_VIN`, `RENT_STARTDATE`, `RENT_ENDDATE`) VALUES
-(1, 3, '2021-06-27', '2021-06-30'),
-(2, 2, '2021-06-09', '2021-06-24'),
-(3, 1, '2021-06-30', '2021-07-10');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `RENTALCAR`
 --
 
 CREATE TABLE `RENTALCAR` (
-  `RC_VIN` int(11) NOT NULL,
+  `RC_ID` int(11) NOT NULL,
   `RC_MAKE` varchar(50) NOT NULL,
   `RC_MODEL` varchar(50) NOT NULL,
   `RC_COLOR` varchar(50) NOT NULL,
@@ -278,7 +258,7 @@ CREATE TABLE `RENTALCAR` (
 -- Dumping data for table `RENTALCAR`
 --
 
-INSERT INTO `RENTALCAR` (`RC_VIN`, `RC_MAKE`, `RC_MODEL`, `RC_COLOR`, `RC_SEATS`) VALUES
+INSERT INTO `RENTALCAR` (`RC_ID`, `RC_MAKE`, `RC_MODEL`, `RC_COLOR`, `RC_SEATS`) VALUES
 (1, 'GMC', 'Yukon', 'Black', 7),
 (2, 'Mitsubishi', 'Mirage', 'Grey', 4),
 (3, 'Chrysler ', '300', 'White', 5);
@@ -371,7 +351,8 @@ ALTER TABLE `ACTIVITY`
 ALTER TABLE `CUSTOMER`
   ADD PRIMARY KEY (`CUST_ID`),
   ADD KEY `CUST_FK1` (`HOTEL_ID`),
-  ADD KEY `CUST_FK2` (`EMPLOYEE_ID`);
+  ADD KEY `CUST_FK2` (`EMPLOYEE_ID`),
+  ADD KEY `CUST_FK3` (`RC_ID`);
 
 --
 -- Indexes for table `EMPLOYEE`
@@ -412,17 +393,10 @@ ALTER TABLE `MOVIE`
   ADD PRIMARY KEY (`ACTIVITY_ID`);
 
 --
--- Indexes for table `RENT`
---
-ALTER TABLE `RENT`
-  ADD PRIMARY KEY (`CUST_ID`,`RC_VIN`),
-  ADD KEY `RENT_FK2` (`RC_VIN`);
-
---
 -- Indexes for table `RENTALCAR`
 --
 ALTER TABLE `RENTALCAR`
-  ADD PRIMARY KEY (`RC_VIN`);
+  ADD PRIMARY KEY (`RC_ID`);
 
 --
 -- Indexes for table `RESTAURANT`
@@ -470,74 +444,6 @@ ALTER TABLE `EMPLOYEE`
 --
 ALTER TABLE `HOTEL`
   MODIFY `HOTEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `LIST`
---
-ALTER TABLE `LIST`
-  MODIFY `LIST_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `THEATER`
---
-ALTER TABLE `THEATER`
-  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `CUSTOMER`
---
-ALTER TABLE `CUSTOMER`
-  ADD CONSTRAINT `CUST_FK1` FOREIGN KEY (`HOTEL_ID`) REFERENCES `hotel` (`HOTEL_ID`),
-  ADD CONSTRAINT `CUST_FK2` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `employee` (`EMPLOYEE_ID`);
-
---
--- Constraints for table `ENROLL`
---
-ALTER TABLE `ENROLL`
-  ADD CONSTRAINT `ENROLL_FK1` FOREIGN KEY (`LIST_ID`) REFERENCES `list` (`LIST_ID`),
-  ADD CONSTRAINT `ENROLL_FK2` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
-
---
--- Constraints for table `HIKE`
---
-ALTER TABLE `HIKE`
-  ADD CONSTRAINT `hike_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
-
---
--- Constraints for table `LIST`
---
-ALTER TABLE `LIST`
-  ADD CONSTRAINT `ACTIVITY_FK1` FOREIGN KEY (`CUST_ID`) REFERENCES `customer` (`CUST_ID`);
-
---
--- Constraints for table `MOVIE`
---
-ALTER TABLE `MOVIE`
-  ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
-
---
--- Constraints for table `RENT`
---
-ALTER TABLE `RENT`
-  ADD CONSTRAINT `RENT_FK1` FOREIGN KEY (`CUST_ID`) REFERENCES `customer` (`CUST_ID`),
-  ADD CONSTRAINT `RENT_FK2` FOREIGN KEY (`RC_VIN`) REFERENCES `rentalcar` (`RC_VIN`);
-
---
--- Constraints for table `RESTAURANT`
---
-ALTER TABLE `RESTAURANT`
-  ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`);
-
---
--- Constraints for table `SHOWING`
---
-ALTER TABLE `SHOWING`
-  ADD CONSTRAINT `SHOWING_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `activity` (`ACTIVITY_ID`),
-  ADD CONSTRAINT `SHOWING_ibfk_2` FOREIGN KEY (`THEATER_ID`) REFERENCES `theater` (`THEATER_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
