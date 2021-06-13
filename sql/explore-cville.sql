@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2021 at 05:59 PM
+-- Generation Time: Jun 13, 2021 at 07:36 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
+
 --
 -- Database: `explore-cville`
 --
@@ -30,8 +30,6 @@ DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIV
 CREATE TABLE `ACTIVITY` (
   `ACTIVITY_ID` int(11) NOT NULL,
   `ACTIVITY_NAME` text NOT NULL,
-  `ACTIVITY_OPENTIME` time DEFAULT current_timestamp(),
-  `ACTIVITY_CLOSETIME` time DEFAULT current_timestamp(),
   `ACTIVITY_TYPE` varchar(12) NOT NULL,
   `ACTIVITY_URL` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,26 +38,16 @@ CREATE TABLE `ACTIVITY` (
 -- Dumping data for table `ACTIVITY`
 --
 
-INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_OPENTIME`, `ACTIVITY_CLOSETIME`, `ACTIVITY_TYPE`, `ACTIVITY_URL`) VALUES
-(1, 'Old Rag Mountain Loop', '06:00:00', '20:00:00', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/old-rag-mountain-loop-trail'),
-(2, 'Humpback Rocks Hike', '06:00:00', '20:00:00', 'HIKE', 'https://www.hikingupward.com/maps/detail.asp?RID=218'),
-(3, 'Riprap Trail', '06:00:00', '20:00:00', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/riprap-trail'),
-(4, 'Public Fish & Oyster', '11:00:00', '23:00:00', 'RESTAURANT', 'http://publicfo.com/'),
-(5, 'Red Hub', '10:00:00', '21:00:00', 'RESTAURANT', 'https://www.redhubfoodco.com/'),
-(6, 'Kardinal Hall', '09:00:00', '23:00:00', 'RESTAURANT', 'https://kardinalhall.com/'),
-(7, 'Legally Blond', '00:00:00', '02:00:00', 'MOVIE', 'https://www.imdb.com/title/tt0250494/'),
-(8, 'Spirit Untamed', '00:00:00', '01:30:00', 'MOVIE', 'https://www.imdb.com/title/tt11084896/'),
-(9, 'The Sparks Brothers', '00:00:00', '02:15:00', 'MOVIE', 'https://www.imdb.com/title/tt8610436/'),
-(10, 'AFDA', '20:00:00', '20:00:00', 'HIKE', 'ADAFDF'),
-(11, 'AFDA', '20:00:00', '20:00:00', 'HIKE', 'ADAFDF'),
-(12, '1', '00:00:02', '00:00:03', '4', '4'),
-(13, '1', '00:00:02', '00:00:03', '3', '4'),
-(14, '2', '00:00:03', '00:00:03', '3', '3'),
-(15, 'dsf', '00:00:01', '00:00:01', 'd', 'df'),
-(16, '1', '00:00:01', '00:00:01', '1', '1'),
-(17, '1', '00:00:01', '00:00:01', '1', '1'),
-(18, '1', '00:00:01', '00:00:01', '1', '1'),
-(19, '1', '00:00:01', '00:00:01', '1', '1');
+INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_TYPE`, `ACTIVITY_URL`) VALUES
+(1, 'Old Rag Mountain Loop', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/old-rag-mountain-loop-trail'),
+(2, 'Humpback Rocks Hike', 'HIKE', 'https://www.hikingupward.com/maps/detail.asp?RID=218'),
+(3, 'Riprap Trail', 'HIKE', 'https://www.alltrails.com/trail/us/virginia/riprap-trail'),
+(4, 'Public Fish & Oyster', 'RESTAURANT', 'http://publicfo.com/'),
+(5, 'Red Hub', 'RESTAURANT', 'https://www.redhubfoodco.com/'),
+(6, 'Kardinal Hall', 'RESTAURANT', 'https://kardinalhall.com/'),
+(7, 'Legally Blonde', 'MOVIE', 'https://www.imdb.com/title/tt0250494/'),
+(8, 'Spirit Untamed', 'MOVIE', 'https://www.imdb.com/title/tt11084896/'),
+(9, 'The Sparks Brothers', 'MOVIE', 'https://www.imdb.com/title/tt8610436/');
 
 -- --------------------------------------------------------
 
@@ -79,7 +67,7 @@ CREATE TABLE `CUSTOMER` (
   `CUST_ZIP` int(11) NOT NULL,
   `HOTEL_ID` int(11) DEFAULT NULL,
   `EMPLOYEE_ID` int(11) DEFAULT NULL,
-  `RC_ID` int(11) NOT NULL
+  `RC_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -88,8 +76,8 @@ CREATE TABLE `CUSTOMER` (
 
 INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`, `RC_ID`) VALUES
 (1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1, 2),
-(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, NULL, 1),
-(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, NULL, 3);
+(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 1, 1),
+(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -230,7 +218,7 @@ CREATE TABLE `MOVIE` (
 --
 
 INSERT INTO `MOVIE` (`ACTIVITY_ID`, `MOVIE_PARENT_RATING`, `MOVIE_GENRE`, `MOVIE_RATING`, `MOVIE_DIRECTOR`, `MOVIE_RELEASE_DATE`) VALUES
-(7, 'PG-13', 'Comedy', '5.7', 'Robert Luketic', '2001-07-01'),
+(7, 'PG-13', 'Comedy', '5', 'Robert Luketic', '2020-07-13'),
 (8, 'G', 'Family', '6.4', 'Elaine Bogan', '2021-06-04'),
 (9, 'G', 'Family', '6.4', 'Elaine Bogan', '2021-06-04');
 
@@ -402,7 +390,7 @@ ALTER TABLE `RESTAURANT`
 -- Indexes for table `SHOWING`
 --
 ALTER TABLE `SHOWING`
-  ADD PRIMARY KEY (`ACTIVITY_ID`,`THEATER_ID`),
+  ADD KEY `ACTIVITY_ID` (`ACTIVITY_ID`),
   ADD KEY `THEATER_ID` (`THEATER_ID`);
 
 --
@@ -438,6 +426,56 @@ ALTER TABLE `EMPLOYEE`
 --
 ALTER TABLE `HOTEL`
   MODIFY `HOTEL_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `CUSTOMER`
+--
+ALTER TABLE `CUSTOMER`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`EMPLOYEE_ID`) REFERENCES `EMPLOYEE` (`EMPLOYEE_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `customer_ibfk_2` FOREIGN KEY (`HOTEL_ID`) REFERENCES `HOTEL` (`HOTEL_ID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `customer_ibfk_3` FOREIGN KEY (`RC_ID`) REFERENCES `RENTALCAR` (`RC_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ENROLL`
+--
+ALTER TABLE `ENROLL`
+  ADD CONSTRAINT `enroll_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enroll_ibfk_2` FOREIGN KEY (`LIST_ID`) REFERENCES `LIST` (`LIST_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `HIKE`
+--
+ALTER TABLE `HIKE`
+  ADD CONSTRAINT `hike_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `LIST`
+--
+ALTER TABLE `LIST`
+  ADD CONSTRAINT `list_ibfk_1` FOREIGN KEY (`CUST_ID`) REFERENCES `CUSTOMER` (`CUST_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `MOVIE`
+--
+ALTER TABLE `MOVIE`
+  ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `RESTAURANT`
+--
+ALTER TABLE `RESTAURANT`
+  ADD CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `SHOWING`
+--
+ALTER TABLE `SHOWING`
+  ADD CONSTRAINT `showing_ibfk_1` FOREIGN KEY (`ACTIVITY_ID`) REFERENCES `ACTIVITY` (`ACTIVITY_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `showing_ibfk_2` FOREIGN KEY (`THEATER_ID`) REFERENCES `THEATER` (`THEATER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
