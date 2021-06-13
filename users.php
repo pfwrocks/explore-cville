@@ -159,13 +159,6 @@
     };
 
     try {
-      if ($type == "EMPLOYEE") {
-        $query = "UPDATE CUSTOMER SET EMPLOYEE_ID = NULL WHERE EMPLOYEE_ID = $id";
-        $statement = $db->exec($query);
-      } else {
-        // TODO: Make all the things dependent on customers have a null value
-      }
-
       $query = "DELETE FROM $type WHERE $type.$id_name = $id";
       $statement = $db->exec($query);
 
