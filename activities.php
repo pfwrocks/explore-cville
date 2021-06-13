@@ -342,7 +342,8 @@
       $statement = $db->exec($query);
 
       if ($table_name == "HIKE" || $table_name == "MOVIE" || $table_name == "RESTAURANT") {
-        $query = "DELETE FROM ACTIVITY WHERE $table_name.ACTIVITY_ID = $id";
+        $query = "DELETE FROM ACTIVITY WHERE ACTIVITY.ACTIVITY_ID = $id";
+        echo $query, '<br>';
         $statement = $db->exec($query);
       }
 
