@@ -77,7 +77,10 @@
     	$query = "UPDATE RESTAURANT SET 
     		RESTAURANT_RATING='" . $_POST['rating'] . "',
     		RESTAURANT_PRICE_RANGE='" . $_POST['price'] . "', RESTAURANT_CUISINE='" . $_POST['cuisine'] . "',
-    		RESTAURANT_STREET='" . $_POST['street'] . "', RESTAURANT_ZIP='" . $_POST['zip'] . "'
+    		RESTAURANT_STREET='" . $_POST['street'] . "', 
+			RESTAURANT_CITY='" . $_POST['city'] . "', 
+			RESTAURANT_STATE='" . $_POST['state'] . "', /*ERRROR*/
+			RESTAURANT_ZIP='" . $_POST['zip'] . "'
     		WHERE ACTIVITY_ID=" . $_POST['id'];
     	$statement = $db->prepare($query);
     	$statement->execute();
@@ -133,6 +136,14 @@
 		<div class='input-group mb-3'>
   			<span class='input-group-text' id='basic-addon3' style='width:15%'>Street</span>
   			<input name='street' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RESTAURANT_STREET'] . "'>
+		</div>
+		<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>City</span>
+  			<input name='city' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RESTAURANT_CITY'] . "'>
+		</div>
+		<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>State</span>
+  			<input name='state' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RESTAURANT_STATE'] . "'>
 		</div>
 		<div class='input-group mb-3'>
   			<span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span>

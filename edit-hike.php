@@ -77,7 +77,10 @@
     	$query = "UPDATE HIKE SET 
     		HIKE_DIFFICULTY='" . $_POST['diff'] . "',
     		HIKE_LENGTH='" . $_POST['length'] . "', HIKE_TOPO_GAIN='" . $_POST['topo'] . "',
-    		HIKE_STREET='" . $_POST['street'] . "', HIKE_ZIP='" . $_POST['zip'] . "'
+    		HIKE_STREET='" . $_POST['street'] . "',
+			HIKE_CITY='" . $_POST['city'] . "',
+			HIKE_STATE='" . $_POST['state'] . "',
+			HIKE_ZIP='" . $_POST['zip'] . "'
     		WHERE ACTIVITY_ID=" . $_POST['id'];
     	$statement = $db->prepare($query);
     	$statement->execute();
@@ -134,6 +137,14 @@
   			<span class='input-group-text' id='basic-addon3' style='width:15%'>Street</span>
   			<input name='street' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['HIKE_STREET'] . "'>
 		</div>
+			<div class='input-group mb-3'>
+			<span class='input-group-text' id='basic-addon3' style='width:15%'>City</span>
+			<input name='city' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['HIKE_CITY'] . "'>
+		</div>
+			<div class='input-group mb-3'>
+			<span class='input-group-text' id='basic-addon3' style='width:15%'>State</span>
+			<input name='state' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['HIKE_STATE'] . "'>
+</div>
 		<div class='input-group mb-3'>
   			<span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span>
   			<input name='zip' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['HIKE_ZIP'] . "'>
