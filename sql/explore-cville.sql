@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2021 at 06:39 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Generation Time: Jun 12, 2021 at 09:28 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,7 +22,6 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENT`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 
 --
 -- Table structure for table `ACTIVITY`
@@ -50,7 +49,17 @@ INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_OPENTIME`, `AC
 (6, 'Kardinal Hall', '09:00:00', '23:00:00', 'RESTAURANT', 'https://kardinalhall.com/'),
 (7, 'Legally Blond', '00:00:00', '02:00:00', 'MOVIE', 'https://www.imdb.com/title/tt0250494/'),
 (8, 'Spirit Untamed', '00:00:00', '01:30:00', 'MOVIE', 'https://www.imdb.com/title/tt11084896/'),
-(9, 'The Sparks Brothers', '00:00:00', '02:15:00', 'MOVIE', 'https://www.imdb.com/title/tt8610436/');
+(9, 'The Sparks Brothers', '00:00:00', '02:15:00', 'MOVIE', 'https://www.imdb.com/title/tt8610436/'),
+(10, 'AFDA', '20:00:00', '20:00:00', 'HIKE', 'ADAFDF'),
+(11, 'AFDA', '20:00:00', '20:00:00', 'HIKE', 'ADAFDF'),
+(12, '1', '00:00:02', '00:00:03', '4', '4'),
+(13, '1', '00:00:02', '00:00:03', '3', '4'),
+(14, '2', '00:00:03', '00:00:03', '3', '3'),
+(15, 'dsf', '00:00:01', '00:00:01', 'd', 'df'),
+(16, '1', '00:00:01', '00:00:01', '1', '1'),
+(17, '1', '00:00:01', '00:00:01', '1', '1'),
+(18, '1', '00:00:01', '00:00:01', '1', '1'),
+(19, '1', '00:00:01', '00:00:01', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -64,7 +73,9 @@ CREATE TABLE `CUSTOMER` (
   `CUST_LNAME` varchar(25) NOT NULL,
   `CUST_AREACODE` int(3) NOT NULL,
   `CUST_PHONE` int(7) NOT NULL,
-  `CUST_ADDRESS` varchar(100) NOT NULL,
+  `CUST_STREET` varchar(100) NOT NULL,
+  `CUST_CITY` varchar(20) NOT NULL,
+  `CUST_STATE` varchar(3) NOT NULL,
   `CUST_ZIP` int(11) NOT NULL,
   `HOTEL_ID` int(11) DEFAULT NULL,
   `EMPLOYEE_ID` int(11) DEFAULT NULL
@@ -74,10 +85,10 @@ CREATE TABLE `CUSTOMER` (
 -- Dumping data for table `CUSTOMER`
 --
 
-INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_ADDRESS`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`) VALUES
-(1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 22105, 2, 1),
-(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 12345, 3, 2),
-(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 12345, 3, 2);
+INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`) VALUES
+(1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1),
+(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 2),
+(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -138,18 +149,19 @@ CREATE TABLE `HIKE` (
   `HIKE_LENGTH` varchar(5) NOT NULL,
   `HIKE_TOPO_GAIN` varchar(11) NOT NULL,
   `HIKE_STREET` varchar(50) NOT NULL,
-  `HIKE_ZIP` varchar(10) NOT NULL,
-  check(HIKE_DIFFICULTY <= 5)
+  `HIKE_CITY` varchar(20) NOT NULL,
+  `HIKE_STATE` varchar(3) NOT NULL,
+  `HIKE_ZIP` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `HIKE`
 --
 
-INSERT INTO `HIKE` (`ACTIVITY_ID`, `HIKE_NAME`, `HIKE_DIFFICULTY`, `HIKE_LENGTH`, `HIKE_TOPO_GAIN`, `HIKE_STREET`, `HIKE_ZIP`) VALUES
-(1, 'Old Rag Mountain Loop', 'Hard', '9.5', '2683', 'State Rte 600, Etlan, VA', '22719'),
-(2, 'Humpback Rocks Hike', 'Moderate', '4.0', '1240', 'Humpback Gap Overlook, Afton, VA', '22920'),
-(3, 'Riprap Trail', 'Hard', '9.3', '2116', 'Wildcat Ridge Parking Area, Crimora, VA', '24431');
+INSERT INTO `HIKE` (`ACTIVITY_ID`, `HIKE_NAME`, `HIKE_DIFFICULTY`, `HIKE_LENGTH`, `HIKE_TOPO_GAIN`, `HIKE_STREET`, `HIKE_CITY`, `HIKE_STATE`, `HIKE_ZIP`) VALUES
+(1, 'Old Rag Mountain Loop', 'Hard', '9.5', '2683', 'State Rte 600', 'Etlan', 'VA', '22719'),
+(2, 'Humpback Rocks Hike', 'Moderate', '4.0', '1240', 'Humpback Gap Overlook', 'Afton', 'VA', '22920'),
+(3, 'Riprap Trail', 'Hard', '9.3', '2116', 'Wildcat Ridge Parking Area', 'Crimora', 'VA', '24431');
 
 -- --------------------------------------------------------
 
@@ -163,22 +175,23 @@ CREATE TABLE `HOTEL` (
   `HOTEL_NIGHTLYCOST` int(11) NOT NULL,
   `HOTEL_MAXCAPACITY` int(11) NOT NULL,
   `HOTEL_CURRCAPACITY` int(11) NOT NULL,
-  `HOTEL_ADDR` varchar(50) NOT NULL,
+  `HOTEL_STREET` varchar(50) NOT NULL,
+  `HOTEL_CITY` varchar(20) NOT NULL,
+  `HOTEL_STATE` varchar(3) NOT NULL,
   `HOTEL_ZIP` varchar(10) NOT NULL,
   `HOTEL_CONTINENTAL` tinyint(1) NOT NULL,
   `HOTEL_AREACODE` int(3) NOT NULL,
-  `HOTEL_PHONE` int(7) NOT NULL,
-  check(HOTEL_CURRCAPACITY <= HOTEL_MAXCAPACITY)
+  `HOTEL_PHONE` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `HOTEL`
 --
 
-INSERT INTO `HOTEL` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_NIGHTLYCOST`, `HOTEL_MAXCAPACITY`, `HOTEL_CURRCAPACITY`, `HOTEL_ADDR`, `HOTEL_ZIP`, `HOTEL_CONTINENTAL`, `HOTEL_AREACODE`, `HOTEL_PHONE`) VALUES
-(1, 'Red Roof Inn', 101, 50, 17, '2011 Holiday Drive', '22901', 0, 0, 0),
-(2, 'Graduate', 439, 30, 15, '1309 W Main St', '22903', 0, 0, 0),
-(3, 'Oakhurst Inn', 339, 12, 11, '100 Oakhurst Circle', '22903', 0, 0, 0);
+INSERT INTO `HOTEL` (`HOTEL_ID`, `HOTEL_NAME`, `HOTEL_NIGHTLYCOST`, `HOTEL_MAXCAPACITY`, `HOTEL_CURRCAPACITY`, `HOTEL_STREET`, `HOTEL_CITY`, `HOTEL_STATE`, `HOTEL_ZIP`, `HOTEL_CONTINENTAL`, `HOTEL_AREACODE`, `HOTEL_PHONE`) VALUES
+(1, 'Red Roof Inn', 101, 50, 17, '2011 Holiday Drive', 'Charlottesville', 'VA', '22901', 0, 703, 222222),
+(2, 'Graduate', 439, 30, 15, '1309 W Main St', 'Charlottesville', 'VA', '22903', 0, 0, 333333),
+(3, 'Oakhurst Inn', 339, 12, 11, '100 Oakhurst Circle', 'Charlottesville', 'VA', '22903', 0, 0, 444444);
 
 -- --------------------------------------------------------
 
@@ -214,8 +227,7 @@ CREATE TABLE `MOVIE` (
   `MOVIE_GENRE` varchar(15) NOT NULL,
   `MOVIE_RATING` varchar(3) NOT NULL,
   `MOVIE_DIRECTOR` varchar(25) NOT NULL,
-  `MOVIE_RELEASE_DATE` date NOT NULL,
-  check(MOVIE_RATING <= 100)
+  `MOVIE_RELEASE_DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -237,8 +249,7 @@ CREATE TABLE `RENT` (
   `CUST_ID` int(11) NOT NULL,
   `RC_VIN` int(11) NOT NULL,
   `RENT_STARTDATE` date DEFAULT NULL,
-  `RENT_ENDDATE` date DEFAULT NULL,
-  check(RENT_STARTDATE < RENT_ENDDATE)
+  `RENT_ENDDATE` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -266,7 +277,9 @@ CREATE TABLE `RENTALCAR` (
   `RC_SEATS` int(10) NOT NULL,
   `RC_RENTAL_COMPANY` varchar(10) NOT NULL,
   `RC_TRANSMISSION` varchar(50) NOT NULL,
-  `RC_PICKUP_ADDR` varchar(50) NOT NULL,
+  `RC_PICKUP_STREET` varchar(50) NOT NULL,
+  `RC_PICKUP_CITY` varchar(20) NOT NULL,
+  `RC_PICKUP_STATE` varchar(3) NOT NULL,
   `RC_PICKUP_ZIP` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -274,10 +287,10 @@ CREATE TABLE `RENTALCAR` (
 -- Dumping data for table `RENTALCAR`
 --
 
-INSERT INTO `RENTALCAR` (`RC_VIN`, `RC_MAKE`, `RC_MODEL`, `RC_COSTPERDAY`, `RC_AVAILABLE`, `RC_COLOR`, `RC_SEATS`, `RC_RENTAL_COMPANY`, `RC_TRANSMISSION`, `RC_PICKUP_ADDR`, `RC_PICKUP_ZIP`) VALUES
-(1, 'GMC', 'Yukon', 261, 0, 'Black', 7, 'Hertz', 'Automatic', '1900 Rio Hill Center, Charlottesville, USA', ''),
-(2, 'Mitsubishi', 'Mirage', 64, 1, 'Grey', 4, 'Enterprise', 'Automatic', '1650 Seminole Trl, Charlottesville, USA', ''),
-(3, 'Chrysler ', '300', 124, 1, 'White', 5, 'Enterprise', 'Automatic', 'CHO Airport, Charlottesville, Virginia', '');
+INSERT INTO `RENTALCAR` (`RC_VIN`, `RC_MAKE`, `RC_MODEL`, `RC_COSTPERDAY`, `RC_AVAILABLE`, `RC_COLOR`, `RC_SEATS`, `RC_RENTAL_COMPANY`, `RC_TRANSMISSION`, `RC_PICKUP_STREET`, `RC_PICKUP_CITY`, `RC_PICKUP_STATE`, `RC_PICKUP_ZIP`) VALUES
+(1, 'GMC', 'Yukon', 261, 0, 'Black', 7, 'Hertz', 'Automatic', '1900 Rio Hill Center', 'Charlottesville', 'VA', '22903'),
+(2, 'Mitsubishi', 'Mirage', 64, 1, 'Grey', 4, 'Enterprise', 'Automatic', '1650 Seminole Trl', 'Charlottesville', 'VA', '22906'),
+(3, 'Chrysler ', '300', 124, 1, 'White', 5, 'Enterprise', 'Automatic', 'CHO Airport', 'Charlottesville', 'VA', '22911');
 
 -- --------------------------------------------------------
 
@@ -292,18 +305,19 @@ CREATE TABLE `RESTAURANT` (
   `RESTAURANT_PRICE_RANGE` varchar(1) NOT NULL,
   `RESTAURANT_CUISINE` varchar(15) NOT NULL,
   `RESTAURANT_STREET` varchar(50) NOT NULL,
-  `RESTAURANT_ZIP` varchar(10) NOT NULL,
-  check(RESTAURANT_RATING <= 5)
+  `RESTAURANT_CITY` varchar(20) NOT NULL,
+  `RESTAURANT_STATE` varchar(3) NOT NULL,
+  `RESTAURANT_ZIP` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `RESTAURANT`
 --
 
-INSERT INTO `RESTAURANT` (`ACTIVITY_ID`, `RESTAURANT_NAME`, `RESTAURANT_RATING`, `RESTAURANT_PRICE_RANGE`, `RESTAURANT_CUISINE`, `RESTAURANT_STREET`, `RESTAURANT_ZIP`) VALUES
-(4, 'Public Fish & Oyster', '4.7', '3', 'Seafood', '513 West Main St, Charlottesville, VA ', '22903'),
-(5, 'Red Hub', '4.4', '1', 'Southern', '202 10TH ST NW, CHARLOTTESVILLE, VA', '22903'),
-(6, 'Kardinal Hall', '4.4', '2', 'German', '722 Preston Ave, Charlottesville, VA ', '22903');
+INSERT INTO `RESTAURANT` (`ACTIVITY_ID`, `RESTAURANT_NAME`, `RESTAURANT_RATING`, `RESTAURANT_PRICE_RANGE`, `RESTAURANT_CUISINE`, `RESTAURANT_STREET`, `RESTAURANT_CITY`, `RESTAURANT_STATE`, `RESTAURANT_ZIP`) VALUES
+(4, 'Public Fish & Oyster', '4.7', '3', 'Seafood', '513 West Main St', 'Charlottesville', 'VA', '22903'),
+(5, 'Red Hub', '4.4', '1', 'Southern', '202 10TH ST NW', 'Charlottesville', 'VA', '22903'),
+(6, 'Kardinal Hall', '4.4', '2', 'German', '722 Preston Ave', 'Charlottesville', 'VA', '22903');
 
 -- --------------------------------------------------------
 
@@ -322,8 +336,9 @@ CREATE TABLE `SHOWING` (
 --
 
 INSERT INTO `SHOWING` (`ACTIVITY_ID`, `THEATER_ID`, `SHOW_TIME`) VALUES
-(8, 1, '2021-06-30 13:00:00'),
-(9, 1, '2021-06-26 17:00:00');
+(7, 2, '2021-06-16 19:30:00'),
+(8, 1, '2021-06-27 11:00:00'),
+(9, 3, '2021-06-20 15:00:00');
 
 -- --------------------------------------------------------
 
@@ -336,6 +351,8 @@ CREATE TABLE `THEATER` (
   `THEATER_NAME` varchar(50) NOT NULL,
   `THEATER_TICK_COST` decimal(10,0) NOT NULL,
   `THEATER_STREET` varchar(50) NOT NULL,
+  `THEATER_CITY` varchar(20) NOT NULL,
+  `THEATER_STATE` varchar(3) NOT NULL,
   `THEATER_ZIP` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -343,8 +360,10 @@ CREATE TABLE `THEATER` (
 -- Dumping data for table `THEATER`
 --
 
-INSERT INTO `THEATER` (`THEATER_ID`, `THEATER_NAME`, `THEATER_TICK_COST`, `THEATER_STREET`, `THEATER_ZIP`) VALUES
-(1, 'Regal Stonefield', '13', '1954 Swanson Dr.', '22901');
+INSERT INTO `THEATER` (`THEATER_ID`, `THEATER_NAME`, `THEATER_TICK_COST`, `THEATER_STREET`, `THEATER_CITY`, `THEATER_STATE`, `THEATER_ZIP`) VALUES
+(1, 'Alamo Drafthouse Cinema Charlottesville', '12', '375 Merchant Walk Square', 'Charlottesville', 'VA', '22902'),
+(2, 'Paramount Theater', '12', '215 E Main St', 'Charlottesville', 'VA', '22902'),
+(3, 'Regal Stonefield & IMAX', '11', '1954 Swanson Dr', 'Charlottesville', 'VA', '22901');
 
 --
 -- Indexes for dumped tables
@@ -442,7 +461,7 @@ ALTER TABLE `THEATER`
 -- AUTO_INCREMENT for table `ACTIVITY`
 --
 ALTER TABLE `ACTIVITY`
-  MODIFY `ACTIVITY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ACTIVITY_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `CUSTOMER`
@@ -472,7 +491,7 @@ ALTER TABLE `LIST`
 -- AUTO_INCREMENT for table `THEATER`
 --
 ALTER TABLE `THEATER`
-  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `THEATER_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
