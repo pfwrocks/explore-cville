@@ -55,7 +55,7 @@ Views:
 [X] Employees
 [X] Activities
 [X] Hikes
-[ ] Movies - Mara, to add `ON DELETE CASCADE` constraint to `SHOWING`
+[X] Movies
 [X] Restaurants
 
 ### Edit Functionality
