@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2021 at 07:28 PM
+-- Generation Time: Jun 13, 2021 at 07:36 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -20,9 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `explore-cville`
 --
-
+DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 -- --------------------------------------------------------
-DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `CUSTOMER`, `RENTALCAR`, `HOTEL`, `EMPLOYEE`;
 
 --
 -- Table structure for table `ACTIVITY`
@@ -46,19 +45,9 @@ INSERT INTO `ACTIVITY` (`ACTIVITY_ID`, `ACTIVITY_NAME`, `ACTIVITY_TYPE`, `ACTIVI
 (4, 'Public Fish & Oyster', 'RESTAURANT', 'http://publicfo.com/'),
 (5, 'Red Hub', 'RESTAURANT', 'https://www.redhubfoodco.com/'),
 (6, 'Kardinal Hall', 'RESTAURANT', 'https://kardinalhall.com/'),
-(7, 'Legally Blond', 'MOVIE', 'https://www.imdb.com/title/tt0250494/'),
+(7, 'Legally Blonde', 'MOVIE', 'https://www.imdb.com/title/tt0250494/'),
 (8, 'Spirit Untamed', 'MOVIE', 'https://www.imdb.com/title/tt11084896/'),
-(9, 'The Sparks Brothers', 'MOVIE', 'https://www.imdb.com/title/tt8610436/'),
-(10, 'AFDA', 'HIKE', 'ADAFDF'),
-(11, 'AFDA', 'HIKE', 'ADAFDF'),
-(12, '1', '4', '4'),
-(13, '1', '3', '4'),
-(14, '2', '3', '3'),
-(15, 'dsf', 'd', 'df'),
-(16, '1', '1', '1'),
-(17, '1', '1', '1'),
-(18, '1', '1', '1'),
-(19, '1', '1', '1');
+(9, 'The Sparks Brothers', 'MOVIE', 'https://www.imdb.com/title/tt8610436/');
 
 -- --------------------------------------------------------
 
@@ -87,8 +76,8 @@ CREATE TABLE `CUSTOMER` (
 
 INSERT INTO `CUSTOMER` (`CUST_ID`, `CUST_FNAME`, `CUST_LNAME`, `CUST_AREACODE`, `CUST_PHONE`, `CUST_STREET`, `CUST_CITY`, `CUST_STATE`, `CUST_ZIP`, `HOTEL_ID`, `EMPLOYEE_ID`, `RC_ID`) VALUES
 (1, 'Harry', 'Potter', 123, 4567890, '4 Privet Drive', 'Watford', 'VA', 22105, 2, 1, 2),
-(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, NULL, 1),
-(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, NULL, 3);
+(2, 'Hermione', 'Granger', 980, 8765432, '1111 Hogwarts Rd', 'Burlington', 'VT', 12345, 3, 1, 1),
+(3, 'Ron', 'Weasley', 111, 2223333, '1112 Hogwarts Rd', 'Burtlington', 'VT', 12345, 3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -229,6 +218,7 @@ CREATE TABLE `MOVIE` (
 --
 
 INSERT INTO `MOVIE` (`ACTIVITY_ID`, `MOVIE_PARENT_RATING`, `MOVIE_GENRE`, `MOVIE_RATING`, `MOVIE_DIRECTOR`, `MOVIE_RELEASE_DATE`) VALUES
+(7, 'PG-13', 'Comedy', '5', 'Robert Luketic', '2020-07-13'),
 (8, 'G', 'Family', '6.4', 'Elaine Bogan', '2021-06-04'),
 (9, 'G', 'Family', '6.4', 'Elaine Bogan', '2021-06-04');
 
