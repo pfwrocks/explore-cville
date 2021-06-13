@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `explore-cville`
 --
-
+DROP TABLE `SHOWING`, `THEATER`, `MOVIE`, `HIKE`, `RESTAURANT`, `ENROLL`, `ACTIVITY`, `LIST`, `RENTALCAR`, `CUSTOMER`, `HOTEL`, `EMPLOYEE`;
 -- --------------------------------------------------------
 
 --
