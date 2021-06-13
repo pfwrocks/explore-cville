@@ -103,8 +103,7 @@
     $statement->closeCursor();
 
     $additional_headers = ($type == "CUSTOMER") 
-      ? "<th>ADDRESS</th>
-      <th>EMPLOYEE</th>
+      ? "<th>EMPLOYEE</th>
       <th>HOTEL</th>
       <th>CAR</th>"
       : "<th>EMAIL</th>
@@ -126,12 +125,9 @@
         <input type='submit' name='btnaction' value='delete_$button_type' class='btn btn-danger'/>
       </form>";
 
-      // TODO: Fix formatting issue of customer's employee + zip code -- the table is too big
       // TODO: Link to the appropriate edit pages
-      $employee = ($result['EM'])
       $additional_data = ($type == "CUSTOMER") 
-      ? "<td>" . $result['CUST_ADDRESS'] . ", " . "CITY" . ", " . "STATE" . " " . $result['CUST_ZIP'] . "</td
-      <td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
+      ? "<td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
       <td>" . $result['HOTEL_NAME'] . "</td>
       <td>" . "COLOR" . " " . "MAKE" . " " . "MODEL" . "</td>"
       : "<td>" . $result['EMPLOYEE_EMAIL'] . "</td>
@@ -142,6 +138,7 @@
       <td>(" . $result[$table_name . 'AREACODE'] . ") " . $result[$table_name . 'PHONE'] . "</td>" .
       $additional_data .
       "<td>" . $btndel . "<td>
+      <td>" . $btndel . "<td>
       </tr>";
     }
     
