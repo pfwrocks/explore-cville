@@ -29,15 +29,16 @@ Views:
 ### Additional Booking Page (to be renamed)
 Views:
 [ ] Hotels
-[ ] Rental Cars
+[X] Rental Cars - Christine. This page needs to be linked from another page. 
 [ ] Theaters
 
-### Add Functionality/Pages
-[ ] List
-[ ] Rental Cars
-[ ] Hotels
+### Add Functionality/Pages 
+- Christine -- Imma try to do all the below and will let you guys know if I need help). 
+[ ] List 
+[ ] Rental Cars 
+[ ] Hotels 
 [ ] Theaters
-[ ] Showings
+[ ] Showings 
 [ ] Customers
 [ ] Employees
 [X] Activities
@@ -47,7 +48,7 @@ Views:
 
 ### Delete Functionality/Pages
 [ ] List
-[ ] Rental Cars
+[ ] Rental Cars - Christine 
 [ ] Hotels
 [ ] Theaters - Preston
 [ ] Showings - Preston
@@ -60,7 +61,7 @@ Views:
 
 ### Edit Functionality
 [ ] List
-[ ] Rental Cars
+[ ] Rental Cars - Christine 
 [ ] Hotels
 [ ] Theaters
 [ ] Showings
