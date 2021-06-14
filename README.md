@@ -28,7 +28,7 @@ Views:
 
 ### Additional Booking Page (to be renamed)
 Views:
-[ ] Hotels
+[ ] Hotels - Jessie 
 [X] Rental Cars - Christine. This page needs to be linked from another page. 
 [ ] Theaters
 
@@ -36,7 +36,7 @@ Views:
 - Christine -- Imma try to do all the below and will let you guys know if I need help). 
 [ ] List 
 [ ] Rental Cars 
-[ ] Hotels 
+[ ] Hotels - Jessie 
 [ ] Theaters
 [ ] Showings 
 [ ] Customers
@@ -62,7 +62,7 @@ Views:
 ### Edit Functionality
 [ ] List
 [ ] Rental Cars - Christine 
-[ ] Hotels
+[ ] Hotels - Jessie 
 [ ] Theaters
 [ ] Showings
 [ ] Customers
