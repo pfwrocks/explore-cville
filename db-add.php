@@ -185,9 +185,7 @@ function addRestaurant($id, $name, $rate, $pr, $cui, $st, $zip){
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
-}
-<<<<<<< HEAD
-=======
+} 
 
 
 # Add a new movie 
@@ -298,6 +296,4 @@ function addList($cust_id, $list_id, $name){
     $statement->execute();
     $statement->closeCursor();
 }
-
->>>>>>> db-add
 ?>
