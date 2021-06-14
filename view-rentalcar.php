@@ -50,15 +50,27 @@
       </div>
   </header>
 
-<?php
-require('connect-db.php');
-showRentalCar();
-?>
 </body>
 
 
 <?php 
+require("connect-db.php");
+try
+{
+  if (isset($_POST['btndelete']))
+  {
+    delete_rc($_POST['id']); 
+  }
+   showRentalCar();
+}
+catch (Exception $e)
+{
+  $error_message = $e->getMessage();
+  echo "<p>Error message: $error_message </p>";
+}
+
 function showRentalCar(){
+    
  global $db;
 
  $query = "SELECT * FROM RENTALCAR";
@@ -73,7 +85,7 @@ function showRentalCar(){
  
  echo "<table style='width:100%''>
        <tr>
-         <th>VIN</th>
+         <th>ID</th>
          <th>MAKE</th>
          <th>MODEL</th>
          <th>COLOR</th>
@@ -81,15 +93,32 @@ function showRentalCar(){
          <th>STATUS</th>
        </tr>";
  
+       $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+       <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+
+
  foreach ($results as $result)
  {
+      
+    $btnedit = "<form action='edit-rentalcar.php' method='post' style='line-height:50px'>
+    <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+  <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+
+
+    $rc_id =  $result['RC_ID'];
+    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' style='line-height:50px'>
+    <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+    <input type='submit' name='btndelete' value='delete' class='btn btn-danger' />";
+
    echo "<tr>
-   <td>" . $result['RC_VIN'] . "</td>
+   <td>" . $result['RC_ID'] . "</td>
    <td>" . $result['RC_MAKE'] . "</td>
    <td>" . $result['RC_MODEL'] . "</td>
    <td>" . $result['RC_COLOR'] . "</td>
    <td>" . $result['RC_SEATS'] . "</td>
-   <td>" . /*TODO REFORMAT*/ isRCAvailable($result['RC_VIN'], $result["CUST_ID"]) . "</td>
+   <td>" .isRCAvailable($result['RC_ID']) . "</td>
+   <td>" . $btndel . "</td>
+   <td>" . $btnedit . "</td>
    </tr>";
  }
  
@@ -97,10 +126,10 @@ function showRentalCar(){
 }
 
     /*TODO:*/ 
-function isRCAvailable($vin, $id){
+function isRCAvailable($rc_id){
     global $db;
 
-    $query = "SELECT * FROM RENT";
+    $query = "SELECT * FROM CUSTOMER";
    
     $statement = $db->prepare($query);
     $statement->execute();
@@ -111,12 +140,24 @@ function isRCAvailable($vin, $id){
 
     foreach ($results as $result)
     {
-        if ($result['RC_VIN']  === $vin){
+        if ($result['RC_ID']  === $rc_id){
             return $result['CUST_ID'];
         }
     }
     return "Available";
 
+}
+function delete_rc($rc_id)
+{
+    global $db; 
+    $query = 
+        "DELETE FROM `RENTALCAR` 
+        WHERE `RENTALCAR`.`RC_ID` = :id";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $rc_id);
+    $statement->execute();
+    $statement->closeCursor();
 }
 ?> 
 
