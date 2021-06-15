@@ -18,7 +18,7 @@
       	
 
 <?php
-	require('db-add.php');
+	require('add-activity.php');
 	global $db;
 	
 	

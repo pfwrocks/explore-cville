@@ -59,7 +59,7 @@
       	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
 
 <?php
-	require('db-add.php');
+	require('add-activity.php');
     global $db;
     $_POST['id'] = 2;  /*TODO, change.*/
     
