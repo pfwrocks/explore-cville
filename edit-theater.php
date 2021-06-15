@@ -46,7 +46,7 @@
   <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Heading-->
-          <h1 class="masthead-heading text-uppercase mb-0">Edit Hike</h1>
+          <h1 class="masthead-heading text-uppercase mb-0">Edit THEATER</h1>
       </div>
   </header>
 
@@ -69,10 +69,10 @@
 	{
 		echo "Theater ID: " . $_POST['id'];    	
     	$query = "UPDATE THEATER SET 
-    		THEATER_TICK_COST='" . $_POST['diff'] . "',
-    		THEATER_STREET='" . $_POST['length'] . "', THEATER_CITY='" . $_POST['topo'] . "',
-    		THEATER_STATE='" . $_POST['street'] . "', THEATER_ZIP='" . $_POST['city'] . "'
-    		WHERE ACTIVITY_ID=" . $_POST['id'];
+    		THEATER_NAME='" . $_POST['name'] . "', THEATER_TICK_COST='" . $_POST['price'] . "',
+    		THEATER_STREET='" . $_POST['street'] . "', THEATER_CITY='" . $_POST['city'] . "',
+    		THEATER_STATE='" . $_POST['state'] . "', THEATER_ZIP='" . $_POST['zip'] . "'
+    		WHERE THEATER_ID=" . $_POST['id'];
     	$statement = $db->prepare($query);
     	$statement->execute();
 	} 
@@ -103,29 +103,30 @@
     	<input type='text' name='id' value='" . $result['THEATER_ID'] . "' hidden />
     	
     	<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>URL</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Name</span>
   			<input name='name' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['THEATER_NAME'] . "'>
 		</div>
 		<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Name</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Tkt Cost</span>
   			<input name='price' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' 
   				value='" . $result['THEATER_TICK_COST'] . "'>
 		</div>
 		<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Difficulty</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Address</span>
   			<input name='street' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['THEATER_STREET'] . "'>
 		</div>
 		<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Length</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>City</span>
   			<input name='city' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['THEATER_CITY'] . "'>
 		</div>
 		<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Topo Gain</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>State</span>
   			<input name='state' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['THEATER_STATE'] . "'>
 		</div>
 		<div class='input-group mb-3'>
-  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Street</span>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span>
   			<input name='zip' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['THEATER_ZIP'] . "'>
+    </div>
 		<div class='d-grid gap-2'>
   			<button class='btn btn-primary' type='submit'>Update</button>
 		</div>
