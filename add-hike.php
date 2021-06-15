@@ -1,6 +1,4 @@
 <?php
-/*TODO*/
-/* NO VIEW PAGE */
 echo "add page!";
 require('add-activity.php');
 addHikeForm(); 
