@@ -10,8 +10,12 @@ function getNewActivitiesID(){
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll();
+    $ret;
+    foreach ($results as $result){
+        $ret = $result['ACTIVITY_ID'];
+    }
     $statement->closeCursor();
-    return sizeof($results);
+    return $ret; 
 }
 
 function addActivityForm()
