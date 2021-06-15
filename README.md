@@ -14,61 +14,61 @@ An informational page, simply with a logo and a quick summary (perhaps Lorem Ips
 
 ### Users Page
 Views:
-[X] Customer
-[X] Employees
+- [x] Customer
+- [x] Employees
 
 ### Activities Page
 Views:
-[X] Activities
-[X] Movies
-[X] Restaurants
-[X] Hikes
-[ ] List
-[ ] Showings
+- [x] Activities
+- [x] Movies
+- [x] Restaurants
+- [x] Hikes
+- [ ] List
+- [ ] Showings
 
 ### Additional Booking Page (to be renamed)
 Views:
-[X] Hotels
-[X] Rental Cars - Christine. This page needs to be linked from another page. 
-[X] Theaters - Preston
+- [x] Hotels
+- [x] Rental Cars - Christine. This page needs to be linked from another page. 
+- [x] Theaters - Preston
 
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
 - Christine -- Imma try to do all the below and will let you guys know if I need help). 
-[ ] List 
-[ ] Rental Cars 
-[ ] Hotels - Jessie 
-[ ] Theaters
-[ ] Showings 
-[X] Customers
-[X] Employees
-[X] Activities
-[X] Hikes
-[X] Movies
-[X] Restaurants
+- [ ] List 
+- [ ] Rental Cars 
+- [ ] Hotels - Jessie 
+- [ ] Theaters
+- [ ] Showings 
+- [x] Customers
+- [x] Employees
+- [x] Activities
+- [x] Hikes
+- [x] Movies
+- [x] Restaurants
 
 ### Delete Functionality/Pages
-[ ] List
-[ ] Rental Cars - Christine 
-[ ] Hotels
-[X] Theaters - Preston
-[ ] Showings - Preston
-[X] Customers
-[X] Employees
-[X] Activities
-[X] Hikes
-[X] Movies
-[X] Restaurants
+- [ ] List
+- [ ] Rental Cars - Christine 
+- [ ] Hotels
+- [x] Theaters - Preston
+- [ ] Showings - Preston
+- [x] Customers
+- [x] Employees
+- [x] Activities
+- [x] Hikes
+- [x] Movies
+- [x] Restaurants
 
 ### Edit Functionality
-[ ] List
-[ ] Rental Cars - Christine 
-[ ] Hotels - Jessie 
-[X] Theaters
-[ ] Showings
-[X] Customers
-[X] Employees
-[X] Activities
-[X] Hikes
-[X] Movies
-[X] Restaurants
+- [ ] List
+- [ ] Rental Cars - Christine 
+- [ ] Hotels - Jessie 
+- [x] Theaters
+- [ ] Showings
+- [x] Customers
+- [x] Employees
+- [x] Activities
+- [x] Hikes
+- [x] Movies
+- [x] Restaurants
