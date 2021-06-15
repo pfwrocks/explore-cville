@@ -34,8 +34,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./users.php?btnaction=customer">Users</a></li>
-              <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./activities.php">Activities</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="./users.php?btnaction=customer">Users</a>
+              </li>
+               <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Itinerary Items 
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="./activities.php">Activities</a>
+          <a class="dropdown-item" href="./hotel.php">Hotels</a>
+          <a class="dropdown-item" href="./view-rentalcar.php">Rental Cars</a>
+        </div>
+      </li>
+
           </ul>
       </div>
   </div>
