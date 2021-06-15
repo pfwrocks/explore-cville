@@ -23,7 +23,7 @@ Views:
 - [x] Movies
 - [x] Restaurants
 - [x] Hikes
-- [ ] List
+- [X] List
 - [ ] Showings
 
 ### Additional Booking Page (to be renamed)
