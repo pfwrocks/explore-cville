@@ -98,7 +98,7 @@
         <input type='text' name='table_name' value='" . $table_name . "ID' hidden />
         <input type='submit' name='btnaction' value='delete' class='btn btn-danger'/>
       </form>";
-      $btnedit = "<form action='edit-restaurant.php' method='post' style='line-height:50px'>
+      $btnedit = "<form action='edit-". strtolower($type) . ".php' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result[$table_name.'ID'] . "' hidden />
         <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
