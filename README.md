@@ -29,7 +29,7 @@ Views:
 ### Additional Booking Page (to be renamed)
 Views:
 - [x] Hotels
-- [x] Rental Cars - Christine. This page needs to be linked from another page. 
+- [x] Rental Cars - Christine. 
 - [x] Theaters - Preston
 
 ### Add Functionality/Pages 
