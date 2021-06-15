@@ -60,7 +60,6 @@
 
 <?php
 require('connect-db.php');
-showHotel();
 ?>
 
   <?php
@@ -74,7 +73,7 @@ showHotel();
           case 'Delete': deleteHotel("HIKE", $_GET['id']); break;
         }
     }
-    else {showHotel("ACTIVITY"); }
+    else {showHotel(); }
   }
   catch (Exception $e)
   {
