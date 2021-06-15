@@ -57,3 +57,75 @@
       <div class="col-9">
       	<br>
       	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
+
+<?php
+	require('db-add.php');
+    global $db;
+    $_POST['id'] = 2;  /*TODO, change.*/
+    
+    /* querying the update.*/ 
+	if (isset($_POST['id']) && isset($_POST['seats']))
+	{
+        // Update the form
+		echo "Car ID: " . $_POST['id'];
+
+    	$query = "UPDATE RENTALCAR SET 
+    		RC_MAKE='" . $_POST['make'] . "',
+    		RC_MODEL='" . $_POST['model'] . "',
+    		RC_COLOR='" . $_POST['color'] . "',
+			RC_SEATS='" . $_POST['seats'] . "'
+    		WHERE RC_ID=" . $_POST['id'];
+    	$statement = $db->prepare($query);
+    	$statement->execute();
+    } 
+    
+    //if (!isset($_POST['id'])) { header('Location: ./rentalcar.php'); } 
+	// pull data with a query
+	// display as input fields
+	// run query on submission and redirect
+	
+    // echo "select data init";
+    
+    /* querying rental cars. */
+    $query = "SELECT * FROM RENTALCAR
+    	WHERE RC_ID = ". $_POST['id']; 
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+    
+    /* creating form */
+    foreach ($results as $result)
+    {
+        echo 
+     "<div class='container'>
+    	
+    	<input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+    	
+    	<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Make</span>
+  			<input name='make' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RC_MAKE'] . "'>
+		</div>
+		<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Model</span>
+  			<input name='model' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' 
+  				value='" . $result['RC_MODEL'] . "'>
+		</div>
+		<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Color</span>
+  			<input name='color' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RC_COLOR'] . "'>
+		</div>
+		<div class='input-group mb-3'>
+  			<span class='input-group-text' id='basic-addon3' style='width:15%'>Seats</span>
+  			<input name='seats' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value='" . $result['RC_SEATS'] . "'>
+        </div>
+    </div>
+    <div class='d-grid gap-2'>
+        <button class='btn btn-primary' type='submit'>Update</button>
+    </div>";
+    }
+?>
+</form>
+<br /> 
+    </div>
+</div>

@@ -96,12 +96,12 @@ function showRentalCar(){
 
  foreach ($results as $result)
  {
-    
-    $btnedit = "<form action='edit-rentalcar.php' method='post' style='line-height:50px'>
-        <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
-        <input type='submit' name='btnedit' value='edit' class='btn btn-info' /></form>";
-
     $rc_id =  $result['RC_ID'];
+
+    $btnedit ="<form action='./edit-rentalcar.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
         <input type='submit' name='btndelete' value='delete' class='btn btn-danger' />";

@@ -296,8 +296,4 @@ function addList($cust_id, $list_id, $name){
     $statement->execute();
     $statement->closeCursor();
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 ?>
