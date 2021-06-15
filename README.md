@@ -61,7 +61,7 @@ Views:
 
 ### Edit Functionality
 - [ ] List
-- [ ] Rental Cars - Christine 
+- [X] Rental Cars - *****Except the button :(  
 - [ ] Hotels - Jessie 
 - [x] Theaters
 - [ ] Showings
