@@ -1,4 +1,5 @@
 <?php
+require("connect-db.php");
 require('add-activity.php');
 addMovieForm();
 # Add a new movie 

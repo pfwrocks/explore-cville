@@ -1,5 +1,6 @@
 <?php
 require('add-activity.php');
+require("connect-db.php");
 addRestaurantForm(); 
 // Form for inserting new restaurants. 
 function addRestaurantForm(){

@@ -6,5 +6,5 @@
           <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
       </div>
 */
-
+require("connect-db.php");
 ?>

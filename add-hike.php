@@ -1,4 +1,5 @@
 <?php
+require("connect-db.php");
 echo "add page!";
 require('add-activity.php');
 addHikeForm(); 
