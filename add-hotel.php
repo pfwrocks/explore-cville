@@ -48,7 +48,7 @@
   <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Heading-->
-          <h1 class="masthead-heading text-uppercase mb-0">Hotels</h1>
+          <h1 class="masthead-heading text-uppercase mb-0">Add Hotel</h1>
       </div>
   </header>
   <div class = "container">
@@ -58,108 +58,87 @@
       <div class = "col-9">
         <br/>
 
-<?php
-require('connect-db.php');
-showHotel();
-?>
-
-  <?php
-  
-  try
-  {
-    if (isset($_GET['btnaction']))
-    {
-      switch ($_GET['btnaction'])
-        {
-          case 'Delete': deleteHotel("HIKE", $_GET['id']); break;
-        }
-    }
-    else {showHotel("ACTIVITY"); }
-  }
-  catch (Exception $e)
-  {
-    $error_message = $e->getMessage();
-    echo "<p>Error message: $error_message </p>";
-  }
-  ?>
-
 </body>
 
+<?php
+addHotelForm()
+?>
 
-<?php 
-function showHotel(){
- global $db;
+<?php
 
- $query = "SELECT * FROM HOTEL";
+require('connect-db.php');
 
- $statement = $db->prepare($query);
- $statement->execute();
-
-  $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-    <input type='submit' name='btnaction' value='Edit' class='btn btn-info' /></form>";
-
- $results = $statement->fetchAll();
- // fetch() returns an array of one row
-
- $statement->closeCursor();
- 
- echo "<table style='width:100%''>
-       <tr>
-         <th>Hotel ID</th>
-         <th>Hotel Name</th>
-         <th>Address</th>
-         <th>Phone Number</th>
-       </tr>";
- 
- foreach ($results as $result)
- {
-      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='text' name='id' value='" . $result['HOTEL_ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='Delete' class='btn btn-danger' />
-      </form>";
-   echo "<tr>
-   <td>" . $result['HOTEL_ID'] . "</td>
-   <td>" . $result['HOTEL_NAME'] . "</td>
-   <td>" . $result['HOTEL_STREET'], ", ", $result['HOTEL_CITY'], " ", $result['HOTEL_STATE'], ", ", $result['HOTEL_ZIP'] . "</td>
-   <td>" . $result['HOTEL_AREACODE'], $result['HOTEL_PHONE'] . "</td>
-   <td>" . $btndel . "</td>
-   <td>" . $btnedit . "</td>
-   </tr>";
- }
-}
-?> 
-
- <?php
-  /*************************/
-  /** delete data **/
-  function deleteHotel($table_name, $id)
-  {
+function getNewHotelID(){
     global $db;
+    $query = "SELECT * FROM HOTEL";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $results = $statement->fetchAll();
+    $statement->closeCursor();
+    return sizeof($results);
+}
 
-    if ($id < 0) {
-      echo "No ID";
-      return;
-    };
 
-    try {
-      $query = "DELETE FROM HOTEL WHERE HOTEL.HOTEL_ID = $id";
-      echo $query, '<br>';
-      $statement = $db->exec($query);
+function addHotelForm()
+{
+    echo "<html>
+        <body>
+        <form action = 'add-hotel.php?btnaction=hotel' method='post'>
+        Name: <input type='text' name='hotel_name'><br>
+        Street Address: <input type='text' name='hotel_street'><br>
+        <br>
+        City: <input type='text' name='hotel_city'><br>
+        State: <input type='text' name='hotel_state'><br>
+        Zip Code: <input type='text' name='hotel_zip'><br>
+        Area Code: <input type='text' name='hotel_areacode'><br>
+        Phone Number: <input type='text' name='hotel_phone'><br>
+        <input value = 'Add' type='submit'>
+    </form>
+        </body>
+    </html>";
 
-      $query = "DELETE FROM ACTIVITY WHERE HOTEL.HOTEL_ID = $id";
-      $statement = $db->exec($query);
-
-      echo "Record deleted successfully";
-    } catch (Exception $e) {
-      echo $query . "<br>" . $e->getMessage();
+    if(isset($_POST['hotel_name']))
+    {
+        addHotel(getNewHotelID(),
+          $_POST['hotel_name'], 
+            $_POST['hotel_street'],
+            $_POST['hotel_city'],
+            $_POST['hotel_state'],
+            $_POST['hotel_zip'],
+            $_POST['hotel_areacode'],
+            $_POST['hotel_phone']);
     }
-    
-  }
-  ?> 
+        
+}
 
+function addHotel($id, $name, $street, $city, $state, $zip, $areacode, $phone)
+{
+    global $db;
+    $query = 
+    "INSERT INTO HOTEL
+        (HOTEL_ID, 
+        HOTEL_NAME, 
+        HOTEL_STREET,
+        HOTEL_CITY, 
+        HOTEL_STATE, 
+        HOTEL_ZIP, 
+        HOTEL_AREACODE, 
+        HOTEL_PHONE) 
+    VALUES (:id, :name, :street, :city, :state, :zip, :areacode, :phone)";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id', $id);
+    $statement->bindValue(':name', $name);
+    $statement->bindValue(':street', $street);
+    $statement->bindValue(':city', $city);
+    $statement->bindValue(':state', $state);
+    $statement->bindValue(':zip', $zip);
+    $statement->bindValue(':arecode', $areacode);
+    $statement->bindValue(':phone', $phone);
+    $statement->execute();
+    $statement->closeCursor();
+}
+?>
 
       </div>
-  </div>
- <div class = "container"> 
-    <a href="add-hotel.php" class="btn btn-success" role="button">Add Hotel</a>
   </div>
