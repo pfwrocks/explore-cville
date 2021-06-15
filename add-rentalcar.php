@@ -1,59 +1,45 @@
 <?php
 /*TODO*/
 require("connect-db.php");
-function addRestaurantForm(){
-    echo"<p> Add activity </p>";
+addRCForm();
+function addRCForm(){
+    echo"<p> Add a rental car </p>";
     echo "<html>
         <body>
-        <form action = 'activities.php?btnaction=restaurant' method='post'>
-        Name: <input type='text' name='activity_name'><br>
-        URL: <input type='text' name='activity_url'><br>
-        <br>
-        Rating: <input type='text' name='res_rating'><br>
-        Price: <input type='text' name='res_price'><br>
-        Cuisine: <input type='text' name='res_cuisine'><br>
-        Street address: <input type='text' name='res_st'><br>
-        Zip: <input type='text' name='res_zip'><br>
+        <form action = 'rentalcar.php' method='post'>
+        Make: <input type='text' name='rc_make'><br>
+        Model: <input type='text' name='rc_model'><br>
+        Color: <input type='text' name='rc_color'><br>
+        Seats: <input type='text' name='rc_seats'><br>
         <input type='submit'>
     </form>
         </body>
     </html>";
-    if(isset($_POST['activity_name']))
+    if(isset($_POST['rc_make']))
     {
-        addActivity($_POST['activity_name'], 
-            "RESTAURANT",
-            $_POST['activity_url']);
-        addRestaurant(
-            getNewActivitiesID(),
-            $_POST['activity_name'],
-            $_POST['res_rating'], 
-            $_POST['res_price'],
-            $_POST['res_cuisine'],
-            $_POST['res_st'],
-            $_POST['res_zip']);
+        addRC(
+            $_POST['rc_make'],
+            $_POST['rc_model'],
+            $_POST['rc_color'],
+            $_POST['rc_seats']
+        );
     }
 }
-function addRestaurant($id, $name, $rate, $pr, $cui, $st, $zip){
+function addRC($make, $model, $color, $seats){
     global $db;
     $query = 
-    "INSERT INTO RESTAURANT
-        (ACTIVITY_ID,
-        RESTAURANT_NAME,	
-        RESTAURANT_RATING,	
-        RESTAURANT_PRICE_RANGE,	
-        RESTAURANT_CUISINE,
-        RESTAURANT_STREET,	
-        RESTAURANT_ZIP) 
-    VALUES (:id, :name, :rate, :pr, :cui, :st, :zip)";
+    "INSERT INTO RENTALCAR
+        (RC_MAKE,
+        RC_MODEL,	
+        RC_COLOR,	
+        RC_SEATS)
+    VALUES (:make, :model, :color, :seats)";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $name);
-    $statement->bindValue(':id', $id);
-    $statement->bindValue(':rate', $rate);
-    $statement->bindValue(':pr', $pr);
-    $statement->bindValue(':cui', $cui);
-    $statement->bindValue(':st', $st);
-    $statement->bindValue(':zip', $zip);
+    $statement->bindValue(':make', $make);
+    $statement->bindValue(':model', $model);
+    $statement->bindValue(':color', $color);
+    $statement->bindValue(':seats', $seats);
     $statement->execute();
     $statement->closeCursor();
 }
