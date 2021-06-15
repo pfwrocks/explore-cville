@@ -70,7 +70,12 @@
             <th>NAME</th>
             <th>TICKET COST</th>
             <th>CITY</th>
-          </tr>";
+          </tr>
+          <div style='text-align: center;'>
+          <form action='add-theater.php' method='post' style='line-height:50px'>
+              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
+          </div> 
+          ";
     
     foreach ($results as $result)
     {

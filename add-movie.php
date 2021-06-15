@@ -1,5 +1,4 @@
 <?php
-/*TODO*/
 require('add-activity.php');
 addMovieForm();
 # Add a new movie 
