@@ -115,14 +115,19 @@
     $statement->closeCursor();
     
     echo "<h2> HIKE </h2>";
-    echo "<table style='width:100%''>
+    echo 
+    "<table style='width:100%''>
           <tr>
             <th>NAME</th>
             <th>DIFF</th>
             <th>LENGTH</th>
             <th>TOPO GAIN</th>
-          </tr>";
-    
+          </tr>
+    <div style='text-align: center;'>
+      <form action='add-hike.php' method='post' style='line-height:50px'>
+          <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
+      </div>
+    ";
     foreach ($results as $result)
     {
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
@@ -146,9 +151,6 @@
     }
     
     echo "</table>";
-
-    require('db-add.php');
-    addHikeForm();
   }
   ?>
   
@@ -170,13 +172,19 @@
     $statement->closeCursor();
     
     echo "<h2> RESTAURANT </h2>";
-    echo "<table style='width:100%''>
+    echo "
+    <table style='width:100%''>
           <tr>
             <th>NAME</th>
             <th>CUISINE</th>
             <th>PRICE RANGE</th>
             <th>STARS</th>
-          </tr>";
+          </tr>
+    <div style='text-align: center;'>
+      <form action='add-restaurant.php' method='post' style='line-height:50px'>
+          <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
+      </div>
+          ";
     
     foreach ($results as $result)
     {
@@ -198,9 +206,6 @@
     }
     
     echo "</table>";
-
-    require("db-add.php");
-    addRestaurantForm();
   }
   ?>
   
@@ -231,7 +236,11 @@
             <th>RATING</th>
             <th>GENRE</th>
             <th>STARS</th>
-          </tr>";
+          </tr>
+        <div style='text-align: center;'>
+          <form action='add-movie.php' method='post' style='line-height:50px'>
+              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
+          </div>";
     
     foreach ($results as $result)
     {
@@ -256,8 +265,6 @@
     }
     
     echo "</table>";
-    require("db-add.php");
-    addMovieForm(); 
   }
   ?>
   
@@ -285,7 +292,11 @@
           <tr>
             <th>NAME</th>
             <th>LIST NAME</th>
-          </tr>";
+          </tr>
+          <div style='text-align: center;'>
+          <form action='add-list.php' method='post' style='line-height:50px'>
+              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
+          </div>";
     
     foreach ($results as $result)
     {
@@ -296,9 +307,6 @@
     }
     
     echo "</table>";
-
-    require("db-add.php");
-    addListForm();
   }
   ?>
 
