@@ -7,8 +7,4 @@
       </div>
 */
 
-
-/*TODO*/
-/* NO VIEW PAGE */
-echo "add page!";
 ?>

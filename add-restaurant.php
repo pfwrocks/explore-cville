@@ -1,4 +1,3 @@
-
 <?php
 require('add-activity.php');
 addRestaurantForm(); 
