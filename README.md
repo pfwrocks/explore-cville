@@ -72,3 +72,6 @@ Views:
 - [x] Hikes
 - [x] Movies
 - [x] Restaurants
+
+### Additional To-Dos
+- [ ] Dropdown for foreign keys (edit pages)
