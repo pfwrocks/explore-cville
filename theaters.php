@@ -72,7 +72,7 @@
             <th>CITY</th>
           </tr>
           <div style='text-align: center;'>
-          <form action='add-theaters.php' method='post' style='line-height:50px'>
+          <form action='add-theater.php' method='post' style='line-height:50px'>
               <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
           </div> 
           ";
