@@ -185,7 +185,6 @@ function addRestaurant($id, $name, $rate, $pr, $cui, $st, $zip){
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
-} 
 
 
 # Add a new movie 
