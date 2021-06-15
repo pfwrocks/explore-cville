@@ -67,7 +67,7 @@
 	if (isset($_POST['id']) && isset($_POST['seats']))
 	{
         // Update the form
-		echo "Car ID: " . $_POST['id'];
+		// echo "Car ID: " . $_POST['id'];
 
     	$query = "UPDATE RENTALCAR SET 
     		RC_MAKE='" . $_POST['make'] . "',
