@@ -33,14 +33,15 @@ Views:
 [ ] Theaters - Preston
 
 ### Add Functionality/Pages 
+** Don't pass in an ID - it should autoincrement
 - Christine -- Imma try to do all the below and will let you guys know if I need help). 
 [ ] List 
 [ ] Rental Cars 
 [ ] Hotels - Jessie 
 [ ] Theaters
 [ ] Showings 
-[ ] Customers
-[ ] Employees
+[X] Customers
+[X] Employees
 [X] Activities
 [X] Hikes
 [X] Movies
@@ -66,7 +67,7 @@ Views:
 [ ] Theaters
 [ ] Showings
 [X] Customers
-[ ] Employees - Mara
+[X] Employees
 [X] Activities
 [X] Hikes
 [X] Movies
