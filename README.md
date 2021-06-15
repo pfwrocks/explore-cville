@@ -30,7 +30,7 @@ Views:
 Views:
 [X] Hotels
 [X] Rental Cars - Christine. This page needs to be linked from another page. 
-[ ] Theaters - Preston
+[X] Theaters - Preston
 
 ### Add Functionality/Pages 
 - Christine -- Imma try to do all the below and will let you guys know if I need help). 
@@ -50,7 +50,7 @@ Views:
 [ ] List
 [ ] Rental Cars - Christine 
 [ ] Hotels
-[ ] Theaters - Preston
+[X] Theaters - Preston
 [ ] Showings - Preston
 [X] Customers
 [X] Employees
@@ -63,7 +63,7 @@ Views:
 [ ] List
 [ ] Rental Cars - Christine 
 [ ] Hotels - Jessie 
-[ ] Theaters
+[X] Theaters
 [ ] Showings
 [X] Customers
 [ ] Employees - Mara
