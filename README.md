@@ -34,12 +34,11 @@ Views:
 
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
-- Christine -- Imma try to do all the below and will let you guys know if I need help). 
-- [ ] List 
-- [ ] Rental Cars 
+- [ ] List - Christine 
+- [ ] Rental Cars - Christine
 - [ ] Hotels - Jessie 
-- [ ] Theaters
-- [ ] Showings 
+- [ ] Theaters - Christine
+- [ ] Showings - Christine
 - [x] Customers
 - [x] Employees
 - [x] Activities
@@ -49,7 +48,7 @@ Views:
 
 ### Delete Functionality/Pages
 - [ ] List
-- [ ] Rental Cars - Christine 
+- [X] Rental Cars - Christine 
 - [ ] Hotels
 - [x] Theaters - Preston
 - [ ] Showings - Preston
