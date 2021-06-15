@@ -1,6 +1,7 @@
 <?php
 /*TODO*/
 require('add-activity.php');
+require("connect-db.php");
 addListForm();
 function addListForm(){
     echo"<p> Add activity </p>";

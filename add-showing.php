@@ -6,9 +6,5 @@
           <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
       </div>
 */
-
-
-/*TODO*/
-/* NO VIEW PAGE */
-echo "add page!";
+require("connect-db.php");
 ?>
