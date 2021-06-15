@@ -38,8 +38,7 @@
         {
           case 'customer': showUser("CUSTOMER");  break;
           case 'employee': showUser("EMPLOYEE");  break;
-          case 'delete_customer': deleteUser("CUSTOMER", "CUST_ID", $_GET['id']); break;
-          case 'delete_employee': deleteUser("EMPLOYEE", "EMPLOYEE_ID", $_GET['id']); break;
+          case 'delete': deleteUser($_GET['type'], $_GET['table_name'], $_GET['id']); break;
         }
     }
     else { showUser("CUSTOMER"); }
@@ -95,10 +94,14 @@
       $button_type = strtolower($type);
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='text' name='id' value='" . $result[$table_name.'ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='delete_$button_type' class='btn btn-danger'/>
+        <input type='text' name='type' value='" . $type . "' hidden />
+        <input type='text' name='table_name' value='" . $table_name . "ID' hidden />
+        <input type='submit' name='btnaction' value='delete' class='btn btn-danger'/>
       </form>";
+      $btnedit = "<form action='edit-". strtolower($type) . ".php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result[$table_name.'ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
-      // TODO: Link to the appropriate edit pages
       $additional_data = ($type == "CUSTOMER") 
       ? "<td>" . $result['EMPLOYEE_FNAME'] . " " . $result['EMPLOYEE_LNAME'] . "</td>
       <td>" . $result['HOTEL_NAME'] . "</td>
@@ -111,7 +114,7 @@
       <td>(" . $result[$table_name . 'AREACODE'] . ") " . $result[$table_name . 'PHONE'] . "</td>" .
       $additional_data .
       "<td>" . $btndel . "<td>
-      <td>" . $btndel . "<td>
+      <td>" . $btnedit . "<td>
       </tr>";
     }
     

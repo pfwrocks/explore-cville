@@ -28,9 +28,9 @@ Views:
 
 ### Additional Booking Page (to be renamed)
 Views:
-[ ] Hotels - Jessie 
+[X] Hotels
 [X] Rental Cars - Christine. This page needs to be linked from another page. 
-[ ] Theaters
+[ ] Theaters - Preston
 
 ### Add Functionality/Pages 
 - Christine -- Imma try to do all the below and will let you guys know if I need help). 
@@ -65,7 +65,7 @@ Views:
 [ ] Hotels - Jessie 
 [ ] Theaters
 [ ] Showings
-[ ] Customers - Mara
+[X] Customers
 [ ] Employees - Mara
 [X] Activities
 [X] Hikes
