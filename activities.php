@@ -1,46 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Explore CVille</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Preston Wright">
-  <meta name="description" content="activites database for Charlottesville community">
-  <meta name="keywords" content="activities charlottesville">
 
-  <!-- Bootstrap 4 -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-  <!-- Font Awesome -->
-  <!-- <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script> -->
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/styles.css">
-
-</head>
-
-<body id="page-top">
-
-  <!-- Navigation TODO: Menu button doesn't work--> 
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-      <div class="container">
-          <a class="navbar-brand" href="./index.php">Explore C'Ville</a>
-          <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Add</a></li>
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./activities.php">Activities</a></li>
-              </ul>
-          </div>
-      </div>
-  </nav>
+  <?php include './components/navigation.php';?>
 
   <!-- Masthead-->
   <header class="masthead bg-primary text-white text-center">
@@ -88,6 +47,7 @@
           case 'list': getList();  break;
           case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
           case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
+          case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -249,9 +209,10 @@
   {
     // echo "select data init";
     global $db;
-    
-    $query = "SELECT ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_URL, 
-    ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
+
+    $query = "SELECT ACTIVITY.ACTIVITY_URL, ACTIVITY.ACTIVITY_ID, ACTIVITY.ACTIVITY_NAME, MOVIE.MOVIE_GENRE, 
+    MOVIE.MOVIE_RATING, MOVIE.MOVIE_PARENT_RATING 
+
     FROM ACTIVITY INNER JOIN MOVIE WHERE ACTIVITY.ACTIVITY_ID=MOVIE.ACTIVITY_ID";
 
     $statement = $db->prepare($query);
@@ -262,8 +223,6 @@
 
     $statement->closeCursor();
     
-    $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-        <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' /></form>";
     
     echo "<h2> MOVIE </h2>";
     echo "<table style='width:100%''>
@@ -280,6 +239,11 @@
         <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
       
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['ACTIVITY_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_movie' class='btn btn-danger' />
+      </form>";
+
       echo "<tr>
       <td> <a href='" . $result['ACTIVITY_URL'] . "' target='_blank'>" . $result['ACTIVITY_NAME'] . "</a></td>
       <td>" . $result['MOVIE_PARENT_RATING'] . "</td>
@@ -356,7 +320,8 @@
       $statement = $db->exec($query);
 
       if ($table_name == "HIKE" || $table_name == "MOVIE" || $table_name == "RESTAURANT") {
-        $query = "DELETE FROM ACTIVITY WHERE $table_name.ACTIVITY_ID = $id";
+        $query = "DELETE FROM ACTIVITY WHERE ACTIVITY.ACTIVITY_ID = $id";
+        echo $query, '<br>';
         $statement = $db->exec($query);
       }
 
