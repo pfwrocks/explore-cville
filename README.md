@@ -65,8 +65,8 @@ Views:
 [ ] Hotels - Jessie 
 [ ] Theaters
 [ ] Showings
-[ ] Customers
-[ ] Employees
+[ ] Customers - Mara
+[ ] Employees - Mara
 [X] Activities
 [X] Hikes
 [X] Movies
