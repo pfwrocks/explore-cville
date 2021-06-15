@@ -74,3 +74,4 @@ Views:
 
 ### Additional To-Dos
 - [ ] Dropdown for foreign keys (edit pages)
+- [ ] Fix auto increment on rental car (makes an add error).
