@@ -58,9 +58,7 @@
     global $db;
 
     $table_name = ($type == "CUSTOMER") ? "CUST_" : "EMPLOYEE_";
-    // TODO: Add in rental car info once database has been cleaned
-    // TODO: Add in city and state
-    // TODO: Figure out how to show customers with no employee correctly
+    // TODO: Link to edit pages
     $query = ($type == "CUSTOMER")
       ? "SELECT *
         FROM CUSTOMER
@@ -82,6 +80,8 @@
       <th>TITLE</th>";
 
     echo "<h2> $type </h2>";
+    echo "<form action='add-". strtolower($type) . ".php' method='post' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='Add " . $type . "' class='btn btn-success' /></form>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
