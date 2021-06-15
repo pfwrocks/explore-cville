@@ -49,7 +49,10 @@
           <h1 class="masthead-heading text-uppercase mb-0">Rental cars</h1>
       </div>
   </header>
-
+  <div style="text-align: center;">
+    <form action='add-rentalcar.php' method='post' style='line-height:50px'>
+        <input type='submit' name='btnaction' value='Add' class='btn btn-success' /></form>
+    </div>
 </body>
 
 
