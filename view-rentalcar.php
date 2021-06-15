@@ -1,6 +1,6 @@
 <!-- TODO:
 - link to main page header.
-- format add, edit. -->
+- edit button doesn't work? (line 100) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +27,7 @@
 </head>
 
 <body>
-  <!-- TODO: fix navbar-->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
       <div class="container">
           <a class="navbar-brand" href="./index.php">Explore C'Ville</a>
           <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +36,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto">
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./activities.php">Activities</a></li>
+			  <!-- TODO home page -->
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./index.php">Home</a></li>
               </ul>
           </div>
       </div>
@@ -92,23 +92,19 @@ function showRentalCar(){
          <th>SEATS</th>
          <th>STATUS</th>
        </tr>";
- 
-       $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-       <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
 
 
  foreach ($results as $result)
  {
-      
+    
     $btnedit = "<form action='edit-rentalcar.php' method='post' style='line-height:50px'>
-    <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
-  <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
-
+        <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+        <input type='submit' name='btnedit' value='edit' class='btn btn-info' /></form>";
 
     $rc_id =  $result['RC_ID'];
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' style='line-height:50px'>
-    <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
-    <input type='submit' name='btndelete' value='delete' class='btn btn-danger' />";
+        <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
+        <input type='submit' name='btndelete' value='delete' class='btn btn-danger' />";
 
    echo "<tr>
    <td>" . $result['RC_ID'] . "</td>
