@@ -1,4 +1,5 @@
 <?php
+include './components/navigation-with-linebreaks.php';
 require('add-activity.php');
 require("connect-db.php");
 addRestaurantForm(); 

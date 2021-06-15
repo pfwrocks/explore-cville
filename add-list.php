@@ -1,5 +1,5 @@
 <?php
-/*TODO*/
+include './components/navigation-with-linebreaks.php';
 require('add-activity.php');
 require("connect-db.php");
 addListForm();
@@ -7,7 +7,7 @@ function addListForm(){
     echo"<p> Add activity </p>";
     echo "<html>
         <body>
-        <form action = 'activities.php?btnaction=hike' method='post'>
+        <form action = 'activities.php?btnaction=list' method='post'>
         List Name: <input type='text' name='activity_name'><br>
         Customer ID: <input type='text' name='activity_name'><br>
         List ID: <input type='text' name='activity_name'><br>

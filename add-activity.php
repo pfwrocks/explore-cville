@@ -1,5 +1,6 @@
 <?php 
 require('connect-db.php');
+include './components/navigation-with-linebreaks.php';
 
 
 // Helper function that returns the latest activity ID

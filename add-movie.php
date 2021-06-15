@@ -1,4 +1,5 @@
 <?php
+include './components/navigation-with-linebreaks.php';
 require("connect-db.php");
 require('add-activity.php');
 addMovieForm();
@@ -7,7 +8,7 @@ function addMovieForm(){
     echo"<p> Add activity </p>";
     echo "<html>
         <body>
-        <form action = 'activities.php?btnaction=hike' method='post'>
+        <form action = 'activities.php?btnaction=movie' method='post'>
         Name: <input type='text' name='activity_name'><br>
         Opens: <input type='text' name='activity_opentime'><br>
         Closes: <input type='text' name='activity_closetime'><br>

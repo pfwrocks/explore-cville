@@ -1,5 +1,6 @@
 <?php
-/*TODO*/
+include './components/navigation-with-linebreaks.php';
+/*TODO: fix increment.*/
 require("connect-db.php");
 addRCForm();
 function addRCForm(){
