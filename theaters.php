@@ -72,7 +72,7 @@
             <th>CITY</th>
           </tr>
           <div style='text-align: center;'>
-          <form action='add-theater.php' method='post' style='line-height:50px'>
+          <form action='add-theaters.php' method='post' style='line-height:50px'>
               <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
           </div> 
           ";
@@ -84,7 +84,7 @@
         <input type='submit' name='btnaction' value='delete_theater' class='btn btn-danger' />
       </form>";
       
-      $btnedit = "<form action='edit-theater.php' method='post' style='line-height:50px'>
+      $btnedit = "<form action='edit-theaters.php' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['THEATER_ID'] . "' hidden />
       <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
       
