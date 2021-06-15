@@ -24,16 +24,6 @@ addHotelForm()
 
 <?php
 require('connect-db.php');
-function getNewHotelID(){
-    global $db;
-    $query = "SELECT * FROM HOTEL";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $results = $statement->fetchAll();
-    $statement->closeCursor();
-    return sizeof($results);
-}
-
 
 function addHotelForm()
 {
@@ -55,8 +45,7 @@ function addHotelForm()
 
     if(isset($_POST['hotel_name']))
     {
-      addHotel(getNewHotelID(),
-        $_POST['hotel_name'], 
+      addHotel($_POST['hotel_name'], 
           $_POST['hotel_street'],
           $_POST['hotel_city'],
           $_POST['hotel_state'],
@@ -67,12 +56,12 @@ function addHotelForm()
         
 }
 
-function addHotel($id, $name, $street, $city, $state, $zip, $areacode, $phone)
+function addHotel( $name, $street, $city, $state, $zip, $areacode, $phone)
 {
     global $db;
     $query = 
     "INSERT INTO HOTEL
-        (HOTEL_ID, 
+        (
         HOTEL_NAME, 
         HOTEL_STREET,
         HOTEL_CITY, 
@@ -80,10 +69,9 @@ function addHotel($id, $name, $street, $city, $state, $zip, $areacode, $phone)
         HOTEL_ZIP, 
         HOTEL_AREACODE, 
         HOTEL_PHONE) 
-    VALUES (:id, :name, :street, :city, :state, :zip, :areacode, :phone)";
+    VALUES (:name, :street, :city, :state, :zip, :areacode, :phone)";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':id', $id);
     $statement->bindValue(':name', $name);
     $statement->bindValue(':street', $street);
     $statement->bindValue(':city', $city);
