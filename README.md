@@ -24,7 +24,7 @@ Views:
 - [x] Restaurants
 - [x] Hikes
 - [X] List
-- [ ] Showings
+- [X] Showings
 
 ### Additional Booking Page (to be renamed)
 Views:
@@ -34,24 +34,24 @@ Views:
 
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
-- [ ] List - Mara Update 
+- [ ] List - Preston update
 - [X] Rental Cars - Mara Update 
 - [X] Hotels
-- [ ] Theaters - Mara Update 
-- [ ] Showings - Mara Update
+- [ ] Theaters - Preston
+- [ ] Showings - Preston
 - [x] Customers
 - [x] Employees
-- [ ] Activities - Mara Update 
-- [ ] Hikes - Mara Update 
-- [ ] Movies - Mara Update 
-- [ ] Restaurants - Mara Update 
+- [ ] Activities - Jessie update 
+- [ ] Hikes - Jessie Update 
+- [ ] Movies - (Christine trying to fix)
+- [ ] Restaurants - Jessie Update 
 
 ### Delete Functionality/Pages
-- [ ] List
+- [ ] List - Mara?
 - [X] Rental Cars - Christine 
-- [ ] Hotels
+- [X] Hotels
 - [x] Theaters - Preston
-- [ ] Showings - Preston
+- [X] Showings - Preston
 - [x] Customers
 - [x] Employees
 - [x] Activities
@@ -60,11 +60,11 @@ Views:
 - [x] Restaurants
 
 ### Edit Functionality
-- [ ] List
+- [ ] List - Mara?
 - [X] Rental Cars
-- [ ] Hotels - Jessie 
+- [X] Hotels - Jessie 
 - [x] Theaters
-- [ ] Showings
+- [X] Showings
 - [x] Customers
 - [x] Employees
 - [x] Activities
@@ -73,6 +73,6 @@ Views:
 - [x] Restaurants
 
 ### Additional To-Dos
-- [ ] Dropdown for foreign keys (edit pages) - Preston
+- [X] Dropdown for foreign keys (edit pages) - Preston
 - [X] Fix auto increment on rental car (makes an add error).
-- [ ] Rental Car edit button doesn't work
+- [ ] Rental Car edit button doesn't work DON'T DEMO :(
