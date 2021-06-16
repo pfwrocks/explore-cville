@@ -19,10 +19,7 @@
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
 
 <?php
-<<<<<<< HEAD
-=======
 include './components/navigation.php';
->>>>>>> 00c6de1fb99bfb1ca0bfe11e4708429f4f1a5775
 /* increment error */ 
 require("connect-db.php");
 addTheaterForm();

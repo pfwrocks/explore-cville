@@ -23,10 +23,7 @@
 example input
 INSERT INTO SHOWTIME (ACTIVITY_ID, THEATER_ID, SHOW_TIME) VALUES (:activity_id, :theater_id :showtime)8 3 2021-06-02 20:15:47
 */
-<<<<<<< HEAD
-=======
 include './components/navigation.php';
->>>>>>> 00c6de1fb99bfb1ca0bfe11e4708429f4f1a5775
 require("connect-db.php");
 addShowingForm();
 // showings.php
