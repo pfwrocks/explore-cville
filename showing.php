@@ -28,13 +28,6 @@
       switch ($_GET['btnaction'])
         {
           case 'delete_theater': deleteTheater();  break;
-          // case 'hike': showHike();  break;
-          // case 'restaurant': showRestaurant();  break;
-          // case 'movie': showMovie();  break;
-          // case 'list': getList();  break;
-          // case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
-          // case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
-          // case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
         }
     }
     else { showShowing(); }
