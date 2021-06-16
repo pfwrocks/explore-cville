@@ -17,6 +17,8 @@ function addHikeForm()
         Length: <input type='text' name='hike_length'><br>
         Topological gain: <input type='text' name='hike_topo'><br>
         Street address: <input type='text' name='hike_st'><br>
+        City: <input type='text' name='hike_city'><br>
+        State : <input type='text' name='hike_state'><br>
         Zip: <input type='text' name='hike_zip'><br>
         <input type='submit'>
     </form>
@@ -35,6 +37,8 @@ function addHikeForm()
             $_POST['hike_length'],
             $_POST['hike_topo'],
             $_POST['hike_st'],
+            $_POST['hike_city'],
+            $_POST['hike_state'],
             $_POST['hike_zip']);
     }
         
@@ -57,8 +61,10 @@ function addHike($id, $name, $diff, $len, $top, $st, $zip)
         HIKE_LENGTH, 
         HIKE_TOPO_GAIN,
         HIKE_STREET,
+        HIKE_CITY,
+        HIKE_STATE,
         HIKE_ZIP) 
-    VALUES (:id, :name, :diff, :len, :top, :st, :zip)";
+    VALUES (:id, :name, :diff, :len, :top, :street, :city, :state, :zip)";
 
     $statement = $db->prepare($query);
     $statement->bindValue(':name', $name);
@@ -66,12 +72,11 @@ function addHike($id, $name, $diff, $len, $top, $st, $zip)
     $statement->bindValue(':diff', $diff);
     $statement->bindValue(':len', $len);
     $statement->bindValue(':top', $top);
-    $statement->bindValue(':st', $st);
+    $statement->bindValue(':state', $state);
+    $statement->bindValue(':city', $city);
+    $statement->bindValue(':street', $street);
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
 }
-
-
-
 ?>
