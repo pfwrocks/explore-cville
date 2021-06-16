@@ -41,9 +41,9 @@ Views:
 - [ ] Showings - Preston
 - [x] Customers
 - [x] Employees
-- [ ] Activities - Jessie update 
+- [X] Activities 
 - [ ] Hikes - Jessie Update 
-- [ ] Movies - (Christine trying to fix)
+- [ ] Movies - Jessie update
 - [ ] Restaurants - Jessie Update 
 
 ### Delete Functionality/Pages

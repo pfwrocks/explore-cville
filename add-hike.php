@@ -1,28 +1,62 @@
+<?php include './components/navigation.php';?>
+
+  <!-- Masthead-->
+  <header class="masthead bg-primary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Heading-->
+          <h1 class="masthead-heading text-uppercase mb-0">Add Hike</h1>
+      </div>
+  </header>
+
+  <div class="container">
+    <center>
+      <div class="col-9">
+        <br>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:0px">
+
 <?php
-include './components/navigation-with-linebreaks.php';
 require("connect-db.php");
 require('add-activity.php');
 addHikeForm(); 
 
 function addHikeForm()
 {
-    echo"<p> Add activity </p>";
     echo "<html>
-        <body>
+
+    <div class = 'container'>
         <form action = 'activities.php?btnaction=hike' method='post'>
-        Name: <input type='text' name='activity_name'><br>
-        URL: <input type='text' name='activity_url'><br>
-        <br>
-        Difficulty: <input type='text' name='hike_difficulty'><br>
-        Length: <input type='text' name='hike_length'><br>
-        Topological gain: <input type='text' name='hike_topo'><br>
-        Street address: <input type='text' name='hike_st'><br>
-        City: <input type='text' name='hike_city'><br>
-        State : <input type='text' name='hike_state'><br>
-        Zip: <input type='text' name='hike_zip'><br>
-        <input type='submit'>
+
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Name</span><input type='text' name='activity_name' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>URL</span><input type='text' name='activity_url' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Difficulty</span><input type='text' name='hike_difficulty' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Length</span><input type='text' name='hike_length' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Topological Gain</span><input type='text' name='hike_topo' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Street Address</span><input type='text' name='hike_st' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>City</span><input type='text' name='hike_city' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>State</span><input type='text' name='hike_state' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+  </div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span><input type='text' name='hike_zip' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+        </div>
+        <div class='d-grid gap-2'>
+            <button class='btn btn-primary' type='submit'>Create</button>
+          </div>
     </form>
-        </body>
     </html>";
 
     if(isset($_POST['activity_name']))
@@ -32,7 +66,6 @@ function addHikeForm()
             $_POST['activity_url']);
         addHike(
             getNewActivitiesID(),
-            $_POST['activity_name'],
             $_POST['hike_difficulty'], 
             $_POST['hike_length'],
             $_POST['hike_topo'],
@@ -43,20 +76,12 @@ function addHikeForm()
     }
         
 }
-function addHike($id, $name, $diff, $len, $top, $st, $zip)
+function addHike($id, $diff, $len, $top, $street, $city, $state, $zip)
 {
-    # example sql
-    /*
-    INSERT INTO `HIKE` (`ACTIVITY_ID`, `HIKE_NAME`, `HIKE_DIFFICULTY`, `HIKE_LENGTH`, `HIKE_TOPO_GAIN`, `HIKE_STREET`, `HIKE_ZIP`) VALUES
-    (1, 'Old Rag Mountain Loop', 'Hard', '9.5', '2683', 'State Rte 600, Etlan, VA', '22719'),
-    (2, 'Humpback Rocks Hike', 'Moderate', '4.0', '1240', 'Humpback Gap Overlook, Afton, VA', '22920'),
-    (3, 'Riprap Trail', 'Hard', '9.3', '2116', 'Wildcat Ridge Parking Area, Crimora, VA', '24431');
-    */
     global $db;
     $query = 
     "INSERT INTO HIKE
         (ACTIVITY_ID, 
-        HIKE_NAME, 
         HIKE_DIFFICULTY, 
         HIKE_LENGTH, 
         HIKE_TOPO_GAIN,
@@ -64,17 +89,16 @@ function addHike($id, $name, $diff, $len, $top, $st, $zip)
         HIKE_CITY,
         HIKE_STATE,
         HIKE_ZIP) 
-    VALUES (:id, :name, :diff, :len, :top, :street, :city, :state, :zip)";
+    VALUES (:id, :diff, :len, :top, :street, :city, :state, :zip)";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $name);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':diff', $diff);
     $statement->bindValue(':len', $len);
     $statement->bindValue(':top', $top);
-    $statement->bindValue(':state', $state);
     $statement->bindValue(':city', $city);
     $statement->bindValue(':street', $street);
+    $statement->bindValue(':state', $state);
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
