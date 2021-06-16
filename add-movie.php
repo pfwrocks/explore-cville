@@ -43,7 +43,7 @@ function addMovie($id, $parental, $gen, $rate, $director, $rd){
         MOVIE_PARENT_RATING,	
         MOVIE_GENRE,	
         MOVIE_RATING,
-        MOVIE_DIRECTOR
+        MOVIE_DIRECTOR,
         MOVIE_RELEASE_DATE)
     VALUES (:id, :parental, :gen, :rate, :director :rd)";
 
