@@ -20,7 +20,7 @@
 require("connect-db.php");
 try
 {
-  if (isset($_POST['btndelete']))
+  if (isset($_POST['btnaction']) == "delete")
   {
     delete_rc($_POST['id']); 
   }
@@ -62,13 +62,12 @@ function showRentalCar(){
  {
     $rc_id =  $result['RC_ID'];
 
-    $btnedit ="<form action='./edit-rentalcar.php' method='post' style='line-height:50px'>
+    $btnedit = "<form action='edit-rentalcar.php' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
-
     $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['RC_ID'] . "' hidden />
-        <input type='submit' name='btndelete' value='delete' class='btn btn-danger' />";
+        <input type='submit' name='btnaction' value='delete' class='btn btn-danger' />";
 
    echo "<tr>
    <td>" . $result['RC_ID'] . "</td>
