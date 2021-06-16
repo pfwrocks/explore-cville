@@ -3,7 +3,7 @@
 example input
 INSERT INTO SHOWTIME (ACTIVITY_ID, THEATER_ID, SHOW_TIME) VALUES (:activity_id, :theater_id :showtime)8 3 2021-06-02 20:15:47
 */
-include './components/navigation-with-linebreaks.php';
+include './components/navigation.php';
 require("connect-db.php");
 addShowingForm();
 // showings.php

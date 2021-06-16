@@ -10,9 +10,6 @@
 
   <div class="container">
     <center>
-    <div class="row">
-      <div class="col-1" style="line-height:75px"> </div>
-      <div class="col-1" style="line-height:75px"> </div>
       <div class="col-9">
       	<br>
       	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
@@ -122,5 +119,4 @@
 ?>
 </form>
 <br /> 
-    </div>
 </div>

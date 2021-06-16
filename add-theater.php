@@ -1,5 +1,5 @@
 <?php
-include './components/navigation-with-linebreaks.php';
+include './components/navigation.php';
 /* increment error */ 
 require("connect-db.php");
 addTheaterForm();
