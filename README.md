@@ -35,7 +35,7 @@ Views:
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
 - [ ] List - Mara Update 
-- [ ] Rental Cars - Mara Update 
+- [X] Rental Cars - Mara Update 
 - [X] Hotels
 - [ ] Theaters - Mara Update 
 - [ ] Showings - Mara Update

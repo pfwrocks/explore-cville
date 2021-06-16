@@ -10,15 +10,12 @@ function addMovieForm(){
         <body>
         <form action = 'activities.php?btnaction=movie' method='post'>
         Name: <input type='text' name='activity_name'><br>
-        Opens: <input type='text' name='activity_opentime'><br>
-        Closes: <input type='text' name='activity_closetime'><br>
-        Type: <input type='text' name='activity_type'><br>
         URL: <input type='text' name='activity_url'><br>
         <br>
-        Rating: <input type='text' name='mov_rating'><br>
-        Price: <input type='text' name='mov_price'><br>
+        Parental Rating: <input type='text' name='mov_parent'><br>
         Genre: <input type='text' name='mov_genre'><br>
         Rating: <input type='text' name='mov_rating'><br>
+        Director: <input type='text' name='mov_director'><br>
         Release Date: <input type='text' name='mov_release_date'><br>
         <input type='submit'>
     </form>
@@ -27,39 +24,35 @@ function addMovieForm(){
     if(isset($_POST['activity_name']))
     {
         addActivity($_POST['activity_name'], 
-            $_POST['activity_opentime'],
-            $_POST['activity_closetime'],
-            $_POST['activity_type'],
+            "MOVIE",
             $_POST['activity_url']);
-        addRestaurant(
+        addMovie(
             getNewActivitiesID(),
-            $_POST['activity_name'],
-            $_POST['mov_rating'], 
-            $_POST['mov_price'],
+            $_POST['mov_parent'], 
             $_POST['mov_genre'],
             $_POST['mov_rating'],
+            $_POST['mov_director'],
             $_POST['mov_release_date']);
     }
 }
-function addMovie($id, $name, $rate, $pr, $gen, $rat, $rd){
+function addMovie($id, $parental, $gen, $rate, $director, $rd){
     global $db;
     $query = 
-    "INSERT INTO RESTAURANT
+    "INSERT INTO MOVIE
         (ACTIVITY_ID,
-        MOVIE_NAME,	
-        MOVIE_PR,	
+        MOVIE_PARENT_RATING,	
         MOVIE_GENRE,	
         MOVIE_RATING,
-        MOVIE_RD)
-    VALUES (:id, :name, :rate, :pr, :gen, :rat, :rd)";
+        MOVIE_DIRECTOR
+        MOVIE_RELEASE_DATE)
+    VALUES (:id, :parental, :gen, :rate, :director :rd)";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $name);
     $statement->bindValue(':id', $id);
-    $statement->bindValue(':rate', $rate);
-    $statement->bindValue(':pr', $pr);
+    $statement->bindValue(':parental', $parental);
     $statement->bindValue(':gen', $gen);
-    $statement->bindValue(':rat', $rat);
+    $statement->bindValue(':rate', $rate);
+    $statement->bindValue(':director', $director);
     $statement->bindValue(':rd', $rd);
     $statement->execute();
     $statement->closeCursor();
