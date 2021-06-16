@@ -37,9 +37,6 @@ function addShowing($activity_id, $theater_id, $showtime){
         SHOW_TIME)
     VALUES (:activity_id, :theater_id :showtime)";
 
-    echo $query; 
-    echo $activity_id ." ". $theater_id ." ". $showtime;
-
     $statement = $db->prepare($query);
     $statement->bindValue(':activity_id', $activity_id);
     $statement->bindValue(':theater_id', $theater_id);
