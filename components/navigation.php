@@ -46,6 +46,7 @@
           <a class="dropdown-item" href="./hotel.php">Hotels</a>
           <a class="dropdown-item" href="./rentalcar.php">Rental Cars</a>
           <a class="dropdown-item" href="./theaters.php">Theaters</a>
+          <a class="dropdown-item" href="./showing.php">Showings</a>
         </div>
       </li>
 
