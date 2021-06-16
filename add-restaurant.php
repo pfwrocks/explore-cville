@@ -1,26 +1,63 @@
+<?php include './components/navigation.php';?>
+
+  <!-- Masthead-->
+  <header class="masthead bg-primary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Heading-->
+          <h1 class="masthead-heading text-uppercase mb-0">Add Restaurant</h1>
+      </div>
+  </header>
+
+  <div class="container">
+    <center>
+      <div class="col-9">
+        <br>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:0px">
+
 <?php
-include './components/navigation-with-linebreaks.php';
 require('add-activity.php');
 require("connect-db.php");
 addRestaurantForm(); 
 // Form for inserting new restaurants. 
 function addRestaurantForm(){
     /* activities.php?btnaction=restaurant*/
-    echo"<p> Add activity </p>";
     echo "<html>
-        <body>
+    <div class = 'container'>
         <form action = '' method='post'>
-        Name: <input type='text' name='activity_name'><br>
-        URL: <input type='text' name='activity_url'><br>
+          <div class='input-group mb-3'>
+          <span class='input-group-text' id='basic-addon3' style='width:15%'>Name</span>
+          <input type='text' name='activity_name' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+          </div>
+
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>URL</span><input type='text' name='activity_url' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
         <br>
-        Rating: <input type='text' name='res_rating'><br>
-        Price: <input type='text' name='res_price'><br>
-        Cuisine: <input type='text' name='res_cuisine'><br>
-        Street address: <input type='text' name='res_street'><br>
-        City: <input type='text' name='res_city'><br>
-        State: <input type='text' name='res_state'><br>
-        Zip: <input type='text' name='res_zip'><br>
-        <input type='submit'>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Rating</span><input type='text' name='res_rating' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Price</span><input type='text' name='res_price' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Cuisine</span><input type='text' name='res_cuisine' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Street Address</span><input type='text' name='res_street' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>City</span><input type='text' name='res_city' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+</div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>State</span><input type='text' name='res_state' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+        </div></div>
+          <div class='input-group mb-3'>
+        <span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span><input type='text' name='res_zip' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''><br>
+        </div>
+          <div class='d-grid gap-2'>
+            <button class='btn btn-primary' type='submit'>Create</button>
+          </div>
+        </div>
     </form>
         </body>
     </html>";
