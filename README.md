@@ -34,15 +34,15 @@ Views:
 
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
-- [ ] List - Christine 
-- [ ] Rental Cars - Christine
-- [ ] Hotels - Jessie 
-- [ ] Theaters - Christine
-- [ ] Showings - Christine
+- [X] List - Christine 
+- [X] Rental Cars - Christine
+- [X] Hotels - Jessie 
+- [X] Theaters - Christine
+- [X] Showings - Christine
 - [x] Customers
 - [x] Employees
 - [x] Activities
-- [x] Hikes
+- [x] Hikes ** Error. 
 - [x] Movies
 - [x] Restaurants
 
@@ -74,4 +74,4 @@ Views:
 
 ### Additional To-Dos
 - [ ] Dropdown for foreign keys (edit pages)
-- [ ] Fix auto increment on rental car (makes an add error).
+- [X] Fix auto increment on rental car (makes an add error).
