@@ -34,17 +34,17 @@ Views:
 
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
-- [X] List - Mara Update 
-- [X] Rental Cars - Mara Update 
+- [ ] List - Mara Update 
+- [ ] Rental Cars - Mara Update 
 - [X] Hotels - Jessie 
-- [X] Theaters - Mara Update 
-- [X] Showings - Mara Update
+- [ ] Theaters - Mara Update 
+- [ ] Showings - Mara Update
 - [x] Customers
 - [x] Employees
-- [x] Activities - Mara Update 
-- [x] Hikes - Mara Update 
-- [x] Movies - Mara Update 
-- [x] Restaurants - Mara Update 
+- [ ] Activities - Mara Update 
+- [ ] Hikes - Mara Update 
+- [ ] Movies - Mara Update 
+- [ ] Restaurants - Mara Update 
 
 ### Delete Functionality/Pages
 - [ ] List
