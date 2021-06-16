@@ -270,7 +270,7 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT CUSTOMER.CUST_FNAME, CUSTOMER.CUST_LNAME, LIST.LIST_NAME 
+    $query = "SELECT CUSTOMER.CUST_FNAME, CUSTOMER.CUST_LNAME, LIST.LIST_NAME, LIST.LIST_ID 
     FROM CUSTOMER INNER JOIN LIST WHERE CUSTOMER.CUST_ID=LIST.CUST_ID";
 
     $statement = $db->prepare($query);
@@ -292,9 +292,21 @@
     
     foreach ($results as $result)
     {
+      $btnedit = "<form action='edit-list.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+      
+        // TODO: set up delete
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_list' class='btn btn-danger' />
+      </form>";
+
       echo "<tr>
       <td>" . $result['CUST_LNAME'] . ", " . $result['CUST_FNAME'] .
       "<td>" . $result['LIST_NAME'] . "</td>
+      <td>" . $btndel . "</td>
+      <td>" . $btnedit . "</td>
       </tr>";
     }
     

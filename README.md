@@ -47,7 +47,7 @@ Views:
 - [ ] Restaurants - Jessie Update 
 
 ### Delete Functionality/Pages
-- [ ] List - Mara?
+- [ ] List - Mara
 - [X] Rental Cars - Christine 
 - [X] Hotels
 - [x] Theaters - Preston
@@ -60,7 +60,7 @@ Views:
 - [x] Restaurants
 
 ### Edit Functionality
-- [ ] List - Mara?
+- [X] List - Mara
 - [X] Rental Cars
 - [X] Hotels - Jessie 
 - [x] Theaters
