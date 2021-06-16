@@ -50,12 +50,7 @@ function showHotel(){
 
  $statement = $db->prepare($query);
  $statement->execute();
-
-  $btnedit = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
-    <input type='submit' name='btnaction' value='Edit' class='btn btn-info' /></form>";
-
  $results = $statement->fetchAll();
- // fetch() returns an array of one row
 
  $statement->closeCursor();
  
@@ -73,6 +68,12 @@ function showHotel(){
         <input type='text' name='id' value='" . $result['HOTEL_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='Delete' class='btn btn-danger' />
       </form>";
+
+
+  $btnedit = "<form action='edit-hotel.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['HOTEL_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+ // fetch() returns an array of one row
    echo "<tr>
    <td>" . $result['HOTEL_ID'] . "</td>
    <td>" . $result['HOTEL_NAME'] . "</td>
