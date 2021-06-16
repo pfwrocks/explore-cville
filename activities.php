@@ -115,6 +115,8 @@
     $statement->closeCursor();
     
     echo "<h2> HIKE </h2>";
+    echo "<form action='add-hike.php' method='post' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='Add Hike' class='btn btn-success' /></form>";
     echo 
     "<table style='width:100%''>
           <tr>
@@ -123,10 +125,6 @@
             <th>LENGTH</th>
             <th>TOPO GAIN</th>
           </tr>
-    <div style='text-align: center;'>
-      <form action='add-hike.php' method='post' style='line-height:50px'>
-          <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
-      </div>
     ";
     foreach ($results as $result)
     {
@@ -172,6 +170,8 @@
     $statement->closeCursor();
     
     echo "<h2> RESTAURANT </h2>";
+    echo "<form action='add-restaurant.php' method='post' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='Add Restaurant' class='btn btn-success' /></form>";
     echo "
     <table style='width:100%''>
           <tr>
@@ -180,10 +180,6 @@
             <th>PRICE RANGE</th>
             <th>STARS</th>
           </tr>
-    <div style='text-align: center;'>
-      <form action='add-restaurant.php' method='post' style='line-height:50px'>
-          <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
-      </div>
           ";
     
     foreach ($results as $result)
@@ -230,17 +226,15 @@
     
     
     echo "<h2> MOVIE </h2>";
+    echo "<form action='add-movie.php' method='post' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='Add Movie' class='btn btn-success' /></form>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
             <th>RATING</th>
             <th>GENRE</th>
             <th>STARS</th>
-          </tr>
-        <div style='text-align: center;'>
-          <form action='add-movie.php' method='post' style='line-height:50px'>
-              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
-          </div>";
+          </tr>";
     
     foreach ($results as $result)
     {
@@ -288,15 +282,13 @@
     $statement->closeCursor();
     
     echo "<h2> LIST </h2>";
+    echo "<form action='add-list.php' method='post' style='line-height:50px'>
+    <input type='submit' name='btnaction' value='Add List' class='btn btn-success' /></form>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
             <th>LIST NAME</th>
-          </tr>
-          <div style='text-align: center;'>
-          <form action='add-list.php' method='post' style='line-height:50px'>
-              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
-          </div>";
+          </tr>";
     
     foreach ($results as $result)
     {
