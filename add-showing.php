@@ -1,13 +1,17 @@
 <?php
+/*
+example input
+INSERT INTO SHOWTIME (ACTIVITY_ID, THEATER_ID, SHOW_TIME) VALUES (:activity_id, :theater_id :showtime)8 3 2021-06-02 20:15:47
+*/
 include './components/navigation-with-linebreaks.php';
 require("connect-db.php");
 addShowingForm();
+// showings.php
 function addShowingForm(){
     echo"<p> Add a showing </p>";
     echo "<html>
         <body>
-        <form action = 'showings.php' method='post'>
-        Name: <input type='text' name='thea_name'><br>
+        <form action = '' method='post'>
         Activity ID#: <input type='text' name='activity_id'><br>
         Theater ID#: <input type='text' name='theater_id'><br>
         Showtime: <input type='text' name='showtime'><br>
@@ -24,7 +28,7 @@ function addShowingForm(){
         );
     }
 }
-function addRC($activity_id, $theater_id, $showtime){
+function addShowing($activity_id, $theater_id, $showtime){
     global $db;
     $query = 
     "INSERT INTO SHOWTIME
