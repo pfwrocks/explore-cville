@@ -32,7 +32,6 @@ function addHikeForm()
             $_POST['activity_url']);
         addHike(
             getNewActivitiesID(),
-            $_POST['activity_name'],
             $_POST['hike_difficulty'], 
             $_POST['hike_length'],
             $_POST['hike_topo'],
@@ -43,20 +42,12 @@ function addHikeForm()
     }
         
 }
-function addHike($id, $name, $diff, $len, $top, $st, $zip)
+function addHike($id, $diff, $len, $top, $street, $city, $state, $zip)
 {
-    # example sql
-    /*
-    INSERT INTO `HIKE` (`ACTIVITY_ID`, `HIKE_NAME`, `HIKE_DIFFICULTY`, `HIKE_LENGTH`, `HIKE_TOPO_GAIN`, `HIKE_STREET`, `HIKE_ZIP`) VALUES
-    (1, 'Old Rag Mountain Loop', 'Hard', '9.5', '2683', 'State Rte 600, Etlan, VA', '22719'),
-    (2, 'Humpback Rocks Hike', 'Moderate', '4.0', '1240', 'Humpback Gap Overlook, Afton, VA', '22920'),
-    (3, 'Riprap Trail', 'Hard', '9.3', '2116', 'Wildcat Ridge Parking Area, Crimora, VA', '24431');
-    */
     global $db;
     $query = 
     "INSERT INTO HIKE
         (ACTIVITY_ID, 
-        HIKE_NAME, 
         HIKE_DIFFICULTY, 
         HIKE_LENGTH, 
         HIKE_TOPO_GAIN,
@@ -64,17 +55,16 @@ function addHike($id, $name, $diff, $len, $top, $st, $zip)
         HIKE_CITY,
         HIKE_STATE,
         HIKE_ZIP) 
-    VALUES (:id, :name, :diff, :len, :top, :street, :city, :state, :zip)";
+    VALUES (:id, :diff, :len, :top, :street, :city, :state, :zip)";
 
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $name);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':diff', $diff);
     $statement->bindValue(':len', $len);
     $statement->bindValue(':top', $top);
-    $statement->bindValue(':state', $state);
     $statement->bindValue(':city', $city);
     $statement->bindValue(':street', $street);
+    $statement->bindValue(':state', $state);
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
