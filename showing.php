@@ -15,6 +15,9 @@
       <div class="col-1" style="line-height:75px">
       </div>
       <div class="col-10">
+        <br />
+        <form action="add-showing.php" method="post" style="line-height:50px">
+        <input type="submit" name="btnaction" value="Add Showing" class="btn btn-success"></form>
         <br /> 
 
   <?php require('connect-db.php'); ?>
@@ -27,7 +30,7 @@
     {
       switch ($_GET['btnaction'])
         {
-          case 'delete_theater': deleteTheater();  break;
+          case 'delete': deleteTheater();  break;
         }
     }
     else { showShowing(); }
@@ -72,7 +75,7 @@
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='text' name='movie' value='" . $result['ACTIVITY_ID'] . "' hidden />
         <input type='text' name='theater' value='" . $result['THEATER_ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='delete_theater' class='btn btn-danger' />
+        <input type='submit' name='btnaction' value='delete' class='btn btn-danger' />
       </form>";
       
       $btnedit = "<form action='edit-showing.php' method='post' style='line-height:50px'>
