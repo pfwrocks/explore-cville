@@ -36,7 +36,7 @@ Views:
 ** Don't pass in an ID - it should autoincrement
 - [ ] List - Mara Update 
 - [X] Rental Cars
-- [] Hotels - Mara Update
+- [X] Hotels - Mara Update
 - [ ] Theaters - Mara Update 
 - [ ] Showings - Mara Update
 - [x] Customers
