@@ -61,7 +61,7 @@ Views:
 
 ### Edit Functionality
 - [ ] List
-- [X] Rental Cars - Edit button Mara
+- [X] Rental Cars
 - [ ] Hotels - Jessie 
 - [x] Theaters
 - [ ] Showings
@@ -75,3 +75,4 @@ Views:
 ### Additional To-Dos
 - [ ] Dropdown for foreign keys (edit pages) - Preston
 - [X] Fix auto increment on rental car (makes an add error).
+- [ ] Rental Car edit button doesn't work
