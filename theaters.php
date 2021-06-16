@@ -11,10 +11,6 @@
 
   <div class="container">
     <center>
-    <div class="row">
-      <div class="col-1" style="line-height:75px">
-      </div>
-      <div class="col-1" style="line-height:75px"> </div>
       <div class="col-9">
         <br /> 
 
@@ -28,14 +24,7 @@
     {
       switch ($_GET['btnaction'])
         {
-          case 'delete_theater': deleteTheater();  break;
-          // case 'hike': showHike();  break;
-          // case 'restaurant': showRestaurant();  break;
-          // case 'movie': showMovie();  break;
-          // case 'list': getList();  break;
-          // case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
-          // case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
-          // case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
+          case 'delete': deleteTheater();  break;
         }
     }
     else { showTheater(); }
@@ -65,23 +54,22 @@
 
     $statement->closeCursor();
     
+    echo "
+    <form action='add-theater.php' method='post' style='line-height:50px'>
+      <input type='submit' name='btnaction' value='Add Theater' class='btn btn-success' /></form>";
     echo "<table style='width:100%''>
           <tr>
             <th>NAME</th>
             <th>TICKET COST</th>
             <th>CITY</th>
           </tr>
-          <div style='text-align: center;'>
-          <form action='add-theaters.php' method='post' style='line-height:50px'>
-              <input type='submit' name='btnaction' value='Add' class='btn btn-outline-success btn-block' /></form>
-          </div> 
           ";
     
     foreach ($results as $result)
     {
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['THEATER_ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='delete_theater' class='btn btn-danger' />
+        <input type='submit' name='btnaction' value='delete' class='btn btn-danger' />
       </form>";
       
       $btnedit = "<form action='edit-theaters.php' method='post' style='line-height:50px'>
@@ -117,11 +105,6 @@
 
     try {
       $query = "DELETE FROM THEATER WHERE THEATER_ID = $id";
-      // echo $query, '<br>';
-      $statement = $db->exec($query);
-
-      $query = "DELETE FROM ACTIVITY WHERE ACTIVITY.ACTIVITY_ID = $id";
-      echo $query, '<br>';
       $statement = $db->exec($query);
 
       echo "Record deleted successfully";
@@ -129,12 +112,11 @@
       echo $query . "<br>" . $e->getMessage();
     }
     
-    header('refresh:3; url=theaters.php');
+    header('refresh:1; url=theaters.php');
     
   }
   ?>  
   
-        </div>
     </div>
     </center>
   </div>
