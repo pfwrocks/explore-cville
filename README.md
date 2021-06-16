@@ -33,7 +33,6 @@ Views:
 - [x] Theaters
 
 ### Add Functionality/Pages 
-** Don't pass in an ID - it should autoincrement
 - [ ] List - Preston update
 - [X] Rental Cars
 - [X] Hotels
@@ -75,4 +74,3 @@ Views:
 ### Additional To-Dos
 - [X] Dropdown for foreign keys (edit pages) - Preston
 - [X] Fix auto increment on rental car (makes an add error).
-- [ ] Rental Car edit button doesn't work DON'T DEMO :(
