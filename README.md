@@ -35,23 +35,23 @@ Views:
 ### Add Functionality/Pages 
 ** Don't pass in an ID - it should autoincrement
 - [ ] List - Preston update
-- [X] Rental Cars - Mara Update 
+- [X] Rental Cars
 - [X] Hotels
-- [ ] Theaters - Preston
+- [ ] Theaters
 - [ ] Showings - Preston
 - [x] Customers
 - [x] Employees
 - [X] Activities 
-- [ ] Hikes - Jessie Update 
-- [ ] Movies - Jessie update
-- [ ] Restaurants - Jessie Update 
+- [X] Hikes 
+- [X] Movies
+- [X] Restaurants
 
 ### Delete Functionality/Pages
-- [ ] List - Mara
-- [X] Rental Cars - Christine 
+- [X] List
+- [X] Rental Cars 
 - [X] Hotels
-- [x] Theaters - Preston
-- [X] Showings - Preston
+- [x] Theaters
+- [X] Showings
 - [x] Customers
 - [x] Employees
 - [x] Activities

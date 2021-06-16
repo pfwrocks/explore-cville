@@ -48,6 +48,7 @@
           case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
           case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
           case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
+          case 'delete_list': deleteList($_GET['id']); break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -296,7 +297,6 @@
         <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
       
-        // TODO: set up delete
       $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
         <input type='submit' name='btnaction' value='delete_list' class='btn btn-danger' />
@@ -336,6 +336,27 @@
         echo $query, '<br>';
         $statement = $db->exec($query);
       }
+
+      echo "Record deleted successfully";
+    } catch (Exception $e) {
+      echo $query . "<br>" . $e->getMessage();
+    }
+    
+  }
+
+  function deleteList($id)
+  {
+    global $db;
+
+    if ($id < 0) {
+      echo "No ID";
+      return;
+    };
+
+    try {
+      $query = "DELETE FROM LIST WHERE LIST_ID = $id";
+      echo $query, '<br>';
+      $statement = $db->exec($query);
 
       echo "Record deleted successfully";
     } catch (Exception $e) {
