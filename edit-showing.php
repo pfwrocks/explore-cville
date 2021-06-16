@@ -4,16 +4,12 @@
   <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Heading-->
-
           <h1 class="masthead-heading text-uppercase mb-0">Edit Showing</h1>
       </div>
   </header>
 
   <div class="container">
     <center>
-    <div class="row">
-      <div class="col-1" style="line-height:75px"> </div>
-      <div class="col-1" style="line-height:75px"> </div>
       <div class="col-9">
       	<br>
       	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
@@ -22,7 +18,6 @@
 <?php
 	require('connect-db.php');
 	global $db;
-	
 	
 	if (isset($_POST['movie']) && isset($_POST['time']))
 	{
@@ -134,5 +129,4 @@
 ?>
 </form>
 <br /> 
-    </div>
 </div>

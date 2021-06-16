@@ -10,8 +10,6 @@
   </header>
   <div class = "container">
     <center> 
-      <div class = "col-1">
-      </div>
       <div class = "col-9">
         <br/>
 
@@ -72,7 +70,7 @@ function showHotel(){
 
   $btnedit = "<form action='edit-hotel.php' method='post' style='line-height:50px'>
         <input type='text' name='id' value='" . $result['HOTEL_ID'] . "' hidden />
-        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+        <input type='submit' name='btnaction' value='Edit' class='btn btn-info' /></form>";
  // fetch() returns an array of one row
    echo "<tr>
    <td>" . $result['HOTEL_ID'] . "</td>
@@ -110,13 +108,11 @@ function showHotel(){
     } catch (Exception $e) {
       echo $query . "<br>" . $e->getMessage();
     }
-    
+    header('refresh:1; url=hotel.php');
   }
   ?> 
-
 
       </div>
   </div>
  <div class = "container"> 
-    <a href="add-hotel.php" class="btn btn-success" role="button">Add Hotel</a>
   </div>

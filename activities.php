@@ -48,6 +48,7 @@
           case 'delete_hike': deleteActivity("HIKE", $_GET['id']); break;
           case 'delete_restaurant': deleteActivity("RESTAURANT", $_GET['id']); break;
           case 'delete_movie': deleteActivity("MOVIE", $_GET['id']); break;
+          case 'delete_list': deleteList($_GET['id']); break;
         }
     }
     else { showActivity("ACTIVITY"); }
@@ -270,7 +271,7 @@
     // echo "select data init";
     global $db;
 
-    $query = "SELECT CUSTOMER.CUST_FNAME, CUSTOMER.CUST_LNAME, LIST.LIST_NAME 
+    $query = "SELECT CUSTOMER.CUST_FNAME, CUSTOMER.CUST_LNAME, LIST.LIST_NAME, LIST.LIST_ID 
     FROM CUSTOMER INNER JOIN LIST WHERE CUSTOMER.CUST_ID=LIST.CUST_ID";
 
     $statement = $db->prepare($query);
@@ -292,9 +293,20 @@
     
     foreach ($results as $result)
     {
+      $btnedit = "<form action='edit-list.php' method='post' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='edit' class='btn btn-info' /></form>";
+      
+      $btndel = "<form action='" . $_SERVER['PHP_SELF'] . "' method='get' style='line-height:50px'>
+        <input type='text' name='id' value='" . $result['LIST_ID'] . "' hidden />
+        <input type='submit' name='btnaction' value='delete_list' class='btn btn-danger' />
+      </form>";
+
       echo "<tr>
       <td>" . $result['CUST_LNAME'] . ", " . $result['CUST_FNAME'] .
       "<td>" . $result['LIST_NAME'] . "</td>
+      <td>" . $btndel . "</td>
+      <td>" . $btnedit . "</td>
       </tr>";
     }
     
@@ -324,6 +336,27 @@
         echo $query, '<br>';
         $statement = $db->exec($query);
       }
+
+      echo "Record deleted successfully";
+    } catch (Exception $e) {
+      echo $query . "<br>" . $e->getMessage();
+    }
+    
+  }
+
+  function deleteList($id)
+  {
+    global $db;
+
+    if ($id < 0) {
+      echo "No ID";
+      return;
+    };
+
+    try {
+      $query = "DELETE FROM LIST WHERE LIST_ID = $id";
+      echo $query, '<br>';
+      $statement = $db->exec($query);
 
       echo "Record deleted successfully";
     } catch (Exception $e) {
