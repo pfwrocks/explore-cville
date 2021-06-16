@@ -1,23 +1,65 @@
+<?php include './components/navigation.php';?>
+
+  <!-- Masthead-->
+  <header class="masthead bg-primary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Heading-->
+
+          <h1 class="masthead-heading text-uppercase mb-0">Add Theater</h1>
+      </div>
+  </header>
+
+  <div class="container">
+    <center>
+    <div class="row">
+      <div class="col-1" style="line-height:75px"> </div>
+      <div class="col-1" style="line-height:75px"> </div>
+      <div class="col-9">
+        <br>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="line-height:50px">
+
 <?php
+<<<<<<< HEAD
+=======
 include './components/navigation.php';
+>>>>>>> 00c6de1fb99bfb1ca0bfe11e4708429f4f1a5775
 /* increment error */ 
 require("connect-db.php");
 addTheaterForm();
 function addTheaterForm(){
-    echo"<p> Add a showing </p>";
-    echo "<html>
-        <body>
-        <form action = 'theaters.php' method='post'>
-        Name: <input type='text' name='thea_name'><br>
-        Cost/Ticket: <input type='text' name='thea_cost'><br>
-        Street: <input type='text' name='thea_street'><br>
-        City: <input type='text' name='thea_city'><br>
-        State: <input type='text' name='thea_state'><br>
-        Zip: <input type='text' name='thea_zip'><br>
-        <input type='submit'>
-    </form>
-        </body>
-    </html>";
+    echo "
+        <div class='container'>
+        
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>Name</span>
+            <input name='thea_name' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>Cost</span>
+            <input name='thea_cost' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>Street</span>
+            <input name='thea_street' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>City</span>
+            <input name='thea_city' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>State</span>
+            <input name='thea_state' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='input-group mb-3'>
+            <span class='input-group-text' id='basic-addon3' style='width:15%'>Zip</span>
+            <input name='thea_zip' type='text' class='form-control' id='basic-url' aria-describedby='basic-addon3' value=''>
+        </div>
+        <div class='d-grid gap-2'>
+            <button class='btn btn-primary' type='submit'>Update</button>
+        </div>
+        
+        ";
+
     if(isset($_POST['thea_name']))
     {
         addTheater(
@@ -51,6 +93,12 @@ function addTheater($name, $cost, $street, $city, $state, $zip){
     $statement->bindValue(':zip', $zip);
     $statement->execute();
     $statement->closeCursor();
+    
+    header('refresh:1; url=theaters.php');
 }
-
 ?>
+
+</form>
+<br /> 
+    </div>
+</div>
