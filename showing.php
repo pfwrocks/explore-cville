@@ -118,7 +118,7 @@
       echo $query . "<br>" . $e->getMessage();
     }
     
-    header('refresh:3; url=showing.php');
+    header('refresh:1; url=showing.php');
     
   }
   ?>  

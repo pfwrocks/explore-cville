@@ -143,6 +143,8 @@
     } catch (Exception $e) {
       echo $query . "<br>" . $e->getMessage();
     }
+
+    header('refresh:1; url=users.php');
   }
   ?>  
         </div>

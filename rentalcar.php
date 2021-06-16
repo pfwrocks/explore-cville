@@ -23,6 +23,8 @@ try
   if (isset($_POST['btnaction']) == "delete")
   {
     delete_rc($_POST['id']); 
+
+    header('refresh:1; url=rentalcar.php');
   }
    showRentalCar();
 }
