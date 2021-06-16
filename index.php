@@ -24,7 +24,7 @@
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">About Explore C'Ville</h4>
                         <p class="lead mb-0">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            ExploreCville benefits local travel agencies by providing travel agents a customer database and key information about customers, activities, and places.
                         </p>
                     </div>
                 </div>
